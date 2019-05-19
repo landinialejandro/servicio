@@ -68,7 +68,7 @@ include("$currDir/header.php");
                             $where_id = " AND interno = '{$item['equipo']}'";
                             $equipo = getDataTable_Values('equipos', $where_id);
 
-                            $where = " AND equipo_repuestos.interno = {$equipo['id']}";
+                            $where = " AND equipo_repuestos.interno = {$equipo['id']} AND equipo_repuestos.servicio = '{$item['servicio']}'";
                             $rep_fields = get_sql_fields('equipo_repuestos');
                             $rep_from = get_sql_from('equipo_repuestos');
                             $rep = sql("SELECT {$rep_fields} FROM {$rep_from} {$where}",$e);
