@@ -1,0 +1,12 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the  and  formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the equipos_init() hook (in hooks/equipos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="equipos-interno-<%%VALUE(id)%%>" class="equipos-interno"><%%VALUE(interno)%%></td>
+		<td id="equipos-articulo-<%%VALUE(id)%%>" class="equipos-articulo"><%%VALUE(articulo)%%></td>
+		<td id="equipos-marca-<%%VALUE(id)%%>" class="equipos-marca"><%%VALUE(marca)%%></td>
+		<td id="equipos-modelo-<%%VALUE(id)%%>" class="equipos-modelo"><%%VALUE(modelo)%%></td>
+		<td id="equipos-familia-<%%VALUE(id)%%>" class="equipos-familia"><%%VALUE(familia)%%></td>

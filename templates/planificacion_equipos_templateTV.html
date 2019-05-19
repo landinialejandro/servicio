@@ -1,0 +1,17 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the planificacion_equipos_init() hook (in hooks/planificacion_equipos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="planificacion_equipos-planificacion-<%%VALUE(id)%%>" class="planificacion_equipos-planificacion"><%%SELECT%%><%%VALUE(planificacion)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-cliente-<%%VALUE(id)%%>" class="planificacion_equipos-cliente"><%%SELECT%%><%%VALUE(cliente)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-equipo-<%%VALUE(id)%%>" class="planificacion_equipos-equipo"><%%SELECT%%><%%VALUE(equipo)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-modelo-<%%VALUE(id)%%>" class="planificacion_equipos-modelo"><%%SELECT%%><%%VALUE(modelo)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-ubicacion-<%%VALUE(id)%%>" class="planificacion_equipos-ubicacion"><%%SELECT%%><%%VALUE(ubicacion)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-horometro-<%%VALUE(id)%%>" class="planificacion_equipos-horometro"><%%SELECT%%><%%VALUE(horometro)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-cumplido-<%%VALUE(id)%%>" class="planificacion_equipos-cumplido text-right"><%%SELECT%%><%%VALUE(cumplido)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-comentarios-<%%VALUE(id)%%>" class="planificacion_equipos-comentarios"><%%SELECT%%><%%VALUE(comentarios)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-fecha_cumplido-<%%VALUE(id)%%>" class="planificacion_equipos-fecha_cumplido"><%%SELECT%%><%%VALUE(fecha_cumplido)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_equipos-distancia-<%%VALUE(id)%%>" class="planificacion_equipos-distancia"><%%SELECT%%><%%VALUE(distancia)%%><%%ENDSELECT%%></td>

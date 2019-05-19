@@ -1,0 +1,10 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the planificacion_pendientes_init() hook (in hooks/planificacion_pendientes.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="planificacion_pendientes-planificacion-<%%VALUE(id)%%>" class="planificacion_pendientes-planificacion"><%%SELECT%%><%%VALUE(planificacion)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_pendientes-interno-<%%VALUE(id)%%>" class="planificacion_pendientes-interno"><%%SELECT%%><%%VALUE(interno)%%><%%ENDSELECT%%></td>
+		<td id="planificacion_pendientes-comentario-<%%VALUE(id)%%>" class="planificacion_pendientes-comentario"><%%SELECT%%><%%VALUE(comentario)%%><%%ENDSELECT%%></td>

@@ -1,0 +1,11 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the equipo_repuestos_init() hook (in hooks/equipo_repuestos.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="equipo_repuestos-interno-<%%VALUE(id)%%>" class="equipo_repuestos-interno"><%%SELECT%%><%%VALUE(interno)%%><%%ENDSELECT%%></td>
+		<td id="equipo_repuestos-codigo-<%%VALUE(id)%%>" class="equipo_repuestos-codigo"><%%SELECT%%><%%VALUE(codigo)%%><%%ENDSELECT%%></td>
+		<td id="equipo_repuestos-descripcion-<%%VALUE(id)%%>" class="equipo_repuestos-descripcion"><%%SELECT%%><%%VALUE(descripcion)%%><%%ENDSELECT%%></td>
+		<td id="equipo_repuestos-cantidad-<%%VALUE(id)%%>" class="equipo_repuestos-cantidad"><%%SELECT%%><%%VALUE(cantidad)%%><%%ENDSELECT%%></td>

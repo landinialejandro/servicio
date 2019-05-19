@@ -1,0 +1,11 @@
+<!-- Edit this file to change the layout of each record in the table view -->
+<!-- To disable clicking of a field, remove the <%%SELECT%%> and <%%ENDSELECT%%> formatters around it-->
+
+<!-- If you wish to hide the table view header that contains the column titles, -->
+<!-- add the following to the planificaciones_init() hook (in hooks/planificaciones.php file) -->
+<!--     $options->ShowTableHeader = 0;     -->
+
+		<td id="planificaciones-titulo-<%%VALUE(id)%%>" class="planificaciones-titulo"><%%SELECT%%><%%VALUE(titulo)%%><%%ENDSELECT%%></td>
+		<td id="planificaciones-tecnico-<%%VALUE(id)%%>" class="planificaciones-tecnico"><%%SELECT%%><%%VALUE(tecnico)%%><%%ENDSELECT%%></td>
+		<td id="planificaciones-camioneta-<%%VALUE(id)%%>" class="planificaciones-camioneta"><%%SELECT%%><%%VALUE(camioneta)%%><%%ENDSELECT%%></td>
+		<td id="planificaciones-fecha_planificado-<%%VALUE(id)%%>" class="planificaciones-fecha_planificado"><%%SELECT%%><%%VALUE(fecha_planificado)%%><%%ENDSELECT%%></td>
