@@ -4,8 +4,9 @@
 		require (dirname(__FILE__).'/_mk/_mkbuttons.php');
 	}
 	if (!function_exists('getDataTable')){
-		require (dirname(__FILE__).'/myLib.php');
+		require (dirname(__FILE__).'/../myLib.php');
 	}
+	
 	function login_ok($memberInfo, &$args){
 
 		return '';

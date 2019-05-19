@@ -101,15 +101,15 @@
 
 	function planificaciones_dv($selectedID, $memberInfo, &$html, &$args){
 
-		$buttons['settings']['CUST_CREDIT']['name'] = 'Set Credit Limit';
+		$buttons['settings']['CUST_CREDIT']['name'] = 'imprimir Plan';
             $buttons['settings']['CUST_CREDIT']['insert'] = false;
             $buttons['settings']['CUST_CREDIT']['update'] = true;
             $buttons['settings']['CUST_CREDIT']['style'] = 'info';
             $buttons['settings']['CUST_CREDIT']['icon'] = 'fa fa-arrows-h';
-            $buttons['settings']['CUST_CREDIT']['onclick'] = 'script|printPlan("' . $selectedID . '",this)';
+            $buttons['settings']['CUST_CREDIT']['onclick'] = 'location|rep_planificacion.php?id=' . $selectedID;
 			$buttons['settings']['CUST_CREDIT']['confirm'] = '';
-			
-			$html .= mkbuttons('companies', $selectedID, $buttons);
+			$a = mkbuttons('planificaciones', $selectedID, $buttons);
+			$html .= $a;
 
 	}
 
