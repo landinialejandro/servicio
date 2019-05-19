@@ -88,29 +88,29 @@ include("$currDir/header.php");
 					<td class="text-right"><?php echo $item['servicio']; ?></td>
 					<td class="text-right"><?php echo $item['ubicacion']; ?></td>
 				</tr>
+                <tr>
+                    <table class="table table-striped table-bordered">
+                            <thead>
+                                <th class="text-center">Codigo</th>
+                                <th class="text-center">Descripcion</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-center">Servicio</th>
+                            </thead>
+                            
+                            <tbody>
+                                <?php foreach($rep as $i => $item_rep){ 
+                                    //var_dump($item_rep);
+                                                ?>
+                                    <tr>
+                                        <td><?php echo $item_rep['codigo']; ?></td>
+                                        <td class="text-right"><?php echo $item_rep['descripcion']; ?></td>
+                                        <td class="text-right"><?php echo $item_rep['cantidad']; ?></td>
+                                        <td class="text-right"><?php echo $item_rep['servicio']; ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                    </table>
+                </tr>
             <?php } ?>
-            <tr>
-                <table class="table table-striped table-bordered">
-                        <thead>
-                            <th class="text-center">Codigo</th>
-                            <th class="text-center">Descripcion</th>
-                            <th class="text-center">Cantidad</th>
-                            <th class="text-center">Servicio</th>
-                        </thead>
-                        
-                        <tbody>
-                            <?php foreach($rep as $i => $item_rep){ 
-                                //var_dump($item_rep);
-                                            ?>
-                                <tr>
-                                    <td><?php echo $item_rep['codigo']; ?></td>
-                                    <td class="text-right"><?php echo $item_rep['descripcion']; ?></td>
-                                    <td class="text-right"><?php echo $item_rep['cantidad']; ?></td>
-                                    <td class="text-right"><?php echo $item_rep['servicio']; ?></td>
-                                </tr>
-                            <?php } ?>
-                        </tbody>
-                </table>
-            </tr>
         </tbody>
 </table>
