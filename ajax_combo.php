@@ -205,6 +205,17 @@
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false
+			),
+			'servicio' => array(
+				'parent_table' => 'codigo_servicios',
+				'parent_pk_field' => 'id',
+				'parent_caption' => '`codigo_servicios`.`servicio`',
+				'parent_from' => '`codigo_servicios` ',
+				'filterers' => array(),
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false
 			)
 		),
 		'codigo_servicios' => array(  
@@ -218,7 +229,7 @@
 				'parent_table' => 'planificacion_equipos',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS(\'\',   `planificaciones1`.`titulo`), \'\')',
-				'parent_from' => '`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ',
+				'parent_from' => '`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ',
 				'filterers' => array(),
 				'custom_query' => '',
 				'inherit_permissions' => false,
@@ -229,7 +240,7 @@
 				'parent_table' => 'planificacion_equipos',
 				'parent_pk_field' => 'id',
 				'parent_caption' => 'IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS(\'\',   `equipos1`.`interno`), \'\')',
-				'parent_from' => '`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ',
+				'parent_from' => '`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ',
 				'filterers' => array(),
 				'custom_query' => '',
 				'inherit_permissions' => false,

@@ -25,14 +25,16 @@
 		"`planificacion_pendientes`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') /* Planificacion */" => "planificacion",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
-		"`planificacion_pendientes`.`comentario`" => "comentario"
+		"`planificacion_pendientes`.`comentario`" => "comentario",
+		"concat('<i class=\"glyphicon glyphicon-', if(`planificacion_pendientes`.`cumplido`, 'check', 'unchecked'), '\"></i>')" => "cumplido"
 	);
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = array(   
 		1 => '`planificacion_pendientes`.`id`',
 		2 => 2,
 		3 => 3,
-		4 => 4
+		4 => 4,
+		5 => '`planificacion_pendientes`.`cumplido`'
 	);
 
 	// Fields that can be displayed in the csv file
@@ -40,14 +42,16 @@
 		"`planificacion_pendientes`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') /* Planificacion */" => "planificacion",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
-		"`planificacion_pendientes`.`comentario`" => "comentario"
+		"`planificacion_pendientes`.`comentario`" => "comentario",
+		"`planificacion_pendientes`.`cumplido`" => "cumplido"
 	);
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = array(   
 		"`planificacion_pendientes`.`id`" => "ID",
 		"IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') /* Planificacion */" => "Planificacion",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "Interno",
-		"`planificacion_pendientes`.`comentario`" => "Comentario"
+		"`planificacion_pendientes`.`comentario`" => "Comentario",
+		"`planificacion_pendientes`.`cumplido`" => "Cumplido"
 	);
 
 	// Fields that can be quick searched
@@ -55,7 +59,8 @@
 		"`planificacion_pendientes`.`id`" => "id",
 		"IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') /* Planificacion */" => "planificacion",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
-		"`planificacion_pendientes`.`comentario`" => "comentario"
+		"`planificacion_pendientes`.`comentario`" => "comentario",
+		"concat('<i class=\"glyphicon glyphicon-', if(`planificacion_pendientes`.`cumplido`, 'check', 'unchecked'), '\"></i>')" => "cumplido"
 	);
 
 	// Lookup fields that can be used as filterers
@@ -89,10 +94,10 @@
 	$x->TableIcon = "table.gif";
 	$x->PrimaryKey = "`planificacion_pendientes`.`id`";
 
-	$x->ColWidth   = array(  150, 150, 150);
-	$x->ColCaption = array("Planificacion", "Interno", "Comentario");
-	$x->ColFieldName = array('planificacion', 'interno', 'comentario');
-	$x->ColNumber  = array(2, 3, 4);
+	$x->ColWidth   = array(  150, 150, 150, 150);
+	$x->ColCaption = array("Planificacion", "Interno", "Comentario", "Cumplido");
+	$x->ColFieldName = array('planificacion', 'interno', 'comentario', 'cumplido');
+	$x->ColNumber  = array(2, 3, 4, 5);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/planificacion_pendientes_templateTV.html';

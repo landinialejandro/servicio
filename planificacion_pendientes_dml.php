@@ -18,8 +18,9 @@ function planificacion_pendientes_insert(){
 		if($data['planificacion'] == empty_lookup_value){ $data['planificacion'] = ''; }
 	$data['interno'] = makeSafe($_REQUEST['planificacion']);
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
-	$data['comentario'] = makeSafe($_REQUEST['comentario']);
-		if($data['comentario'] == empty_lookup_value){ $data['comentario'] = ''; }
+	$data['comentario'] = br2nl(makeSafe($_REQUEST['comentario']));
+	$data['cumplido'] = makeSafe($_REQUEST['cumplido']);
+		if($data['cumplido'] == empty_lookup_value){ $data['cumplido'] = ''; }
 
 	// hook: planificacion_pendientes_before_insert
 	if(function_exists('planificacion_pendientes_before_insert')){
@@ -28,7 +29,7 @@ function planificacion_pendientes_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `planificacion_pendientes` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `comentario`=' . (($data['comentario'] !== '' && $data['comentario'] !== NULL) ? "'{$data['comentario']}'" : 'NULL'), $o);
+	sql('insert into `planificacion_pendientes` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `comentario`=' . (($data['comentario'] !== '' && $data['comentario'] !== NULL) ? "'{$data['comentario']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"planificacion_pendientes_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -105,8 +106,9 @@ function planificacion_pendientes_update($selected_id){
 		if($data['planificacion'] == empty_lookup_value){ $data['planificacion'] = ''; }
 	$data['interno'] = makeSafe($_REQUEST['planificacion']);
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
-	$data['comentario'] = makeSafe($_REQUEST['comentario']);
-		if($data['comentario'] == empty_lookup_value){ $data['comentario'] = ''; }
+	$data['comentario'] = br2nl(makeSafe($_REQUEST['comentario']));
+	$data['cumplido'] = makeSafe($_REQUEST['cumplido']);
+		if($data['cumplido'] == empty_lookup_value){ $data['cumplido'] = ''; }
 	$data['selectedID']=makeSafe($selected_id);
 
 	// hook: planificacion_pendientes_before_update
@@ -116,7 +118,7 @@ function planificacion_pendientes_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `planificacion_pendientes` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `comentario`=' . (($data['comentario'] !== '' && $data['comentario'] !== NULL) ? "'{$data['comentario']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `planificacion_pendientes` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `comentario`=' . (($data['comentario'] !== '' && $data['comentario'] !== NULL) ? "'{$data['comentario']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="planificacion_pendientes_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -353,6 +355,7 @@ function planificacion_pendientes_form($selected_id = '', $AllowUpdate = 1, $All
 		$jsReadOnly .= "\tjQuery('#planificacion').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#planificacion_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#comentario').replaceWith('<div class=\"form-control-static\" id=\"comentario\">' + (jQuery('#comentario').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#cumplido').prop('disabled', true);\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -386,6 +389,7 @@ function planificacion_pendientes_form($selected_id = '', $AllowUpdate = 1, $All
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(planificacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(comentario)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(cumplido)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id){
@@ -395,9 +399,13 @@ function planificacion_pendientes_form($selected_id = '', $AllowUpdate = 1, $All
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(planificacion)%%>', safe_html($urow['planificacion']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(planificacion)%%>', html_attr($row['planificacion']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(planificacion)%%>', urlencode($urow['planificacion']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(comentario)%%>', safe_html($urow['comentario']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(comentario)%%>', html_attr($row['comentario']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)){
+			$templateCode = str_replace('<%%VALUE(comentario)%%>', safe_html($urow['comentario']), $templateCode);
+		}else{
+			$templateCode = str_replace('<%%VALUE(comentario)%%>', html_attr($row['comentario']), $templateCode);
+		}
 		$templateCode = str_replace('<%%URLVALUE(comentario)%%>', urlencode($urow['comentario']), $templateCode);
+		$templateCode = str_replace('<%%CHECKED(cumplido)%%>', ($row['cumplido'] ? "checked" : ""), $templateCode);
 	}else{
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -405,6 +413,7 @@ function planificacion_pendientes_form($selected_id = '', $AllowUpdate = 1, $All
 		$templateCode = str_replace('<%%URLVALUE(planificacion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(comentario)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(comentario)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%CHECKED(cumplido)%%>', '', $templateCode);
 	}
 
 	// process translations

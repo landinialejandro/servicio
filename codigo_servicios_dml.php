@@ -72,6 +72,25 @@ function codigo_servicios_delete($selected_id, $AllowDeleteOfParents=false, $ski
 			return $Translation['Couldn\'t delete this record'];
 	}
 
+	// child table: planificacion_equipos
+	$res = sql("select `id` from `codigo_servicios` where `id`='$selected_id'", $eo);
+	$id = db_fetch_row($res);
+	$rires = sql("select count(1) from `planificacion_equipos` where `servicio`='".addslashes($id[0])."'", $eo);
+	$rirow = db_fetch_row($rires);
+	if($rirow[0] && !$AllowDeleteOfParents && !$skipChecks){
+		$RetMsg = $Translation["couldn't delete"];
+		$RetMsg = str_replace("<RelatedRecords>", $rirow[0], $RetMsg);
+		$RetMsg = str_replace("<TableName>", "planificacion_equipos", $RetMsg);
+		return $RetMsg;
+	}elseif($rirow[0] && $AllowDeleteOfParents && !$skipChecks){
+		$RetMsg = $Translation["confirm delete"];
+		$RetMsg = str_replace("<RelatedRecords>", $rirow[0], $RetMsg);
+		$RetMsg = str_replace("<TableName>", "planificacion_equipos", $RetMsg);
+		$RetMsg = str_replace("<Delete>", "<input type=\"button\" class=\"button\" value=\"".$Translation['yes']."\" onClick=\"window.location='codigo_servicios_view.php?SelectedID=".urlencode($selected_id)."&delete_x=1&confirmed=1';\">", $RetMsg);
+		$RetMsg = str_replace("<Cancel>", "<input type=\"button\" class=\"button\" value=\"".$Translation['no']."\" onClick=\"window.location='codigo_servicios_view.php?SelectedID=".urlencode($selected_id)."';\">", $RetMsg);
+		return $RetMsg;
+	}
+
 	sql("delete from `codigo_servicios` where `id`='$selected_id'", $eo);
 
 	// hook: codigo_servicios_after_delete

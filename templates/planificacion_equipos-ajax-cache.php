@@ -11,7 +11,8 @@
 			planificacion: <?php echo json_encode(array('id' => $rdata['planificacion'], 'value' => $rdata['planificacion'], 'text' => $jdata['planificacion'])); ?>,
 			cliente: <?php echo json_encode(array('id' => $rdata['cliente'], 'value' => $rdata['cliente'], 'text' => $jdata['cliente'])); ?>,
 			equipo: <?php echo json_encode(array('id' => $rdata['equipo'], 'value' => $rdata['equipo'], 'text' => $jdata['equipo'])); ?>,
-			modelo: <?php echo json_encode($jdata['modelo']); ?>
+			modelo: <?php echo json_encode($jdata['modelo']); ?>,
+			servicio: <?php echo json_encode(array('id' => $rdata['servicio'], 'value' => $rdata['servicio'], 'text' => $jdata['servicio'])); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -54,6 +55,14 @@
 				return true;
 			}
 
+			return false;
+		});
+
+		/* saved value for servicio */
+		cache.addCheck(function(u, d){
+			if(u != 'ajax_combo.php') return false;
+			if(d.t == tn && d.f == 'servicio' && d.id == data.servicio.id)
+				return { results: [ data.servicio ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

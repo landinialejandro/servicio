@@ -17,9 +17,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Producto', 4 => 'Marca', 5 => 'Modelo', 6 => 'Familia', 7 => 'Numero serie', 8 => 'Motor', 9 => 'Motor modelo', 10 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'producto', 4 => 'marca', 5 => 'modelo', 6 => 'familia', 7 => 'numero_serie', 8 => 'motor_marca', 9 => 'motor_modelo', 10 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => 4, 4 => '`marcas1`.`marca`', 5 => '`modelos1`.`modelo`', 6 => '`familias1`.`familia`', 7 => 8, 8 => 9, 9 => 10, 10 => 11),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -28,7 +28,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', `equipos`.`producto` as 'producto', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'marca' => array(   
 					'parent-table' => 'marcas',
@@ -40,9 +40,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Producto', 4 => 'Marca', 5 => 'Modelo', 6 => 'Familia', 7 => 'Numero serie', 8 => 'Motor', 9 => 'Motor modelo', 10 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'producto', 4 => 'marca', 5 => 'modelo', 6 => 'familia', 7 => 'numero_serie', 8 => 'motor_marca', 9 => 'motor_modelo', 10 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => 4, 4 => '`marcas1`.`marca`', 5 => '`modelos1`.`modelo`', 6 => '`familias1`.`familia`', 7 => 8, 8 => 9, 9 => 10, 10 => 11),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -51,7 +51,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', `equipos`.`producto` as 'producto', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'modelo' => array(   
 					'parent-table' => 'modelos',
@@ -63,9 +63,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Producto', 4 => 'Marca', 5 => 'Modelo', 6 => 'Familia', 7 => 'Numero serie', 8 => 'Motor', 9 => 'Motor modelo', 10 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'producto', 4 => 'marca', 5 => 'modelo', 6 => 'familia', 7 => 'numero_serie', 8 => 'motor_marca', 9 => 'motor_modelo', 10 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => 4, 4 => '`marcas1`.`marca`', 5 => '`modelos1`.`modelo`', 6 => '`familias1`.`familia`', 7 => 8, 8 => 9, 9 => 10, 10 => 11),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -74,7 +74,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', `equipos`.`producto` as 'producto', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'familia' => array(   
 					'parent-table' => 'familias',
@@ -86,9 +86,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Producto', 4 => 'Marca', 5 => 'Modelo', 6 => 'Familia', 7 => 'Numero serie', 8 => 'Motor', 9 => 'Motor modelo', 10 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'producto', 4 => 'marca', 5 => 'modelo', 6 => 'familia', 7 => 'numero_serie', 8 => 'motor_marca', 9 => 'motor_modelo', 10 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => 4, 4 => '`marcas1`.`marca`', 5 => '`modelos1`.`modelo`', 6 => '`familias1`.`familia`', 7 => 8, 8 => 9, 9 => 10, 10 => 11),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -97,7 +97,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', `equipos`.`producto` as 'producto', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				)
 			),
 			'modelos' => array(   
@@ -242,9 +242,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Ubicacion', 6 => 'Horometro', 7 => 'Cumplido', 8 => 'Comentarios', 9 => 'Fecha cumplido', 10 => 'Distancia'),
-					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'ubicacion', 6 => 'horometro', 7 => 'cumplido', 8 => 'comentarios', 9 => 'fecha_cumplido', 10 => 'distancia'),
-					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => 6, 6 => 7, 7 => '`planificacion_equipos`.`cumplido`', 8 => 9, 9 => '`planificacion_equipos`.`fecha_cumplido`', 10 => 11),
+					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Servicio', 6 => 'Ubicacion', 7 => 'Horometro', 8 => 'Cumplido', 9 => 'Comentarios', 10 => 'Fecha cumplido', 11 => 'Distancia'),
+					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'servicio', 6 => 'ubicacion', 7 => 'horometro', 8 => 'cumplido', 9 => 'comentarios', 10 => 'fecha_cumplido', 11 => 'distancia'),
+					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => '`codigo_servicios1`.`servicio`', 6 => 7, 7 => 8, 8 => '`planificacion_equipos`.`cumplido`', 9 => 10, 10 => '`planificacion_equipos`.`fecha_cumplido`', 11 => 12),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -253,7 +253,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-planificacion_equipos',
 					'template-printable' => 'children-planificacion_equipos-printable',
-					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
+					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
 				),
 				'cliente' => array(   
 					'parent-table' => 'clientes',
@@ -265,9 +265,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Ubicacion', 6 => 'Horometro', 7 => 'Cumplido', 8 => 'Comentarios', 9 => 'Fecha cumplido', 10 => 'Distancia'),
-					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'ubicacion', 6 => 'horometro', 7 => 'cumplido', 8 => 'comentarios', 9 => 'fecha_cumplido', 10 => 'distancia'),
-					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => 6, 6 => 7, 7 => '`planificacion_equipos`.`cumplido`', 8 => 9, 9 => '`planificacion_equipos`.`fecha_cumplido`', 10 => 11),
+					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Servicio', 6 => 'Ubicacion', 7 => 'Horometro', 8 => 'Cumplido', 9 => 'Comentarios', 10 => 'Fecha cumplido', 11 => 'Distancia'),
+					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'servicio', 6 => 'ubicacion', 7 => 'horometro', 8 => 'cumplido', 9 => 'comentarios', 10 => 'fecha_cumplido', 11 => 'distancia'),
+					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => '`codigo_servicios1`.`servicio`', 6 => 7, 7 => 8, 8 => '`planificacion_equipos`.`cumplido`', 9 => 10, 10 => '`planificacion_equipos`.`fecha_cumplido`', 11 => 12),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -276,7 +276,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-planificacion_equipos',
 					'template-printable' => 'children-planificacion_equipos-printable',
-					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
+					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
 				),
 				'equipo' => array(   
 					'parent-table' => 'equipos',
@@ -288,9 +288,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Ubicacion', 6 => 'Horometro', 7 => 'Cumplido', 8 => 'Comentarios', 9 => 'Fecha cumplido', 10 => 'Distancia'),
-					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'ubicacion', 6 => 'horometro', 7 => 'cumplido', 8 => 'comentarios', 9 => 'fecha_cumplido', 10 => 'distancia'),
-					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => 6, 6 => 7, 7 => '`planificacion_equipos`.`cumplido`', 8 => 9, 9 => '`planificacion_equipos`.`fecha_cumplido`', 10 => 11),
+					'display-fields' => array(1 => 'Planificacion', 2 => 'Cliente', 3 => 'Equipo', 4 => 'Modelo', 5 => 'Servicio', 6 => 'Ubicacion', 7 => 'Horometro', 8 => 'Cumplido', 9 => 'Comentarios', 10 => 'Fecha cumplido', 11 => 'Distancia'),
+					'display-field-names' => array(1 => 'planificacion', 2 => 'cliente', 3 => 'equipo', 4 => 'modelo', 5 => 'servicio', 6 => 'ubicacion', 7 => 'horometro', 8 => 'cumplido', 9 => 'comentarios', 10 => 'fecha_cumplido', 11 => 'distancia'),
+					'sortable-fields' => array(0 => '`planificacion_equipos`.`id`', 1 => '`planificaciones1`.`titulo`', 2 => '`clientes1`.`nombre`', 3 => '`equipos1`.`interno`', 4 => 5, 5 => '`codigo_servicios1`.`servicio`', 6 => 7, 7 => 8, 8 => '`planificacion_equipos`.`cumplido`', 9 => 10, 10 => '`planificacion_equipos`.`fecha_cumplido`', 11 => 12),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -299,7 +299,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-planificacion_equipos',
 					'template-printable' => 'children-planificacion_equipos-printable',
-					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
+					'query' => "SELECT `planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia' FROM `planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` "
 				)
 			),
 			'codigo_servicios' => array(   
@@ -319,9 +319,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Planificacion', 2 => 'Interno', 3 => 'Comentario'),
-					'display-field-names' => array(1 => 'planificacion', 2 => 'interno', 3 => 'comentario'),
-					'sortable-fields' => array(0 => '`planificacion_pendientes`.`id`', 1 => 2, 2 => 3, 3 => 4),
+					'display-fields' => array(1 => 'Planificacion', 2 => 'Interno', 3 => 'Comentario', 4 => 'Cumplido'),
+					'display-field-names' => array(1 => 'planificacion', 2 => 'interno', 3 => 'comentario', 4 => 'cumplido'),
+					'sortable-fields' => array(0 => '`planificacion_pendientes`.`id`', 1 => 2, 2 => 3, 3 => 4, 4 => '`planificacion_pendientes`.`cumplido`'),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -330,7 +330,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-planificacion_pendientes',
 					'template-printable' => 'children-planificacion_pendientes-printable',
-					'query' => "SELECT `planificacion_pendientes`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', `planificacion_pendientes`.`comentario` as 'comentario' FROM `planificacion_pendientes` LEFT JOIN `planificacion_equipos` as planificacion_equipos1 ON `planificacion_equipos1`.`id`=`planificacion_pendientes`.`planificacion` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos1`.`planificacion` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos1`.`equipo` "
+					'query' => "SELECT `planificacion_pendientes`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', `planificacion_pendientes`.`comentario` as 'comentario', concat('<i class=\"glyphicon glyphicon-', if(`planificacion_pendientes`.`cumplido`, 'check', 'unchecked'), '\"></i>') as 'cumplido' FROM `planificacion_pendientes` LEFT JOIN `planificacion_equipos` as planificacion_equipos1 ON `planificacion_equipos1`.`id`=`planificacion_pendientes`.`planificacion` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos1`.`planificacion` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos1`.`equipo` "
 				)
 			)
 		);

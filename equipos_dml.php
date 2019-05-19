@@ -18,6 +18,8 @@ function equipos_insert(){
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
 	$data['articulo'] = makeSafe($_REQUEST['articulo']);
 		if($data['articulo'] == empty_lookup_value){ $data['articulo'] = ''; }
+	$data['producto'] = makeSafe($_REQUEST['producto']);
+		if($data['producto'] == empty_lookup_value){ $data['producto'] = ''; }
 	$data['marca'] = makeSafe($_REQUEST['marca']);
 		if($data['marca'] == empty_lookup_value){ $data['marca'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['modelo']);
@@ -40,7 +42,7 @@ function equipos_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL'), $o);
+	sql('insert into `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `producto`=' . (($data['producto'] !== '' && $data['producto'] !== NULL) ? "'{$data['producto']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"equipos_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -155,6 +157,8 @@ function equipos_update($selected_id){
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
 	$data['articulo'] = makeSafe($_REQUEST['articulo']);
 		if($data['articulo'] == empty_lookup_value){ $data['articulo'] = ''; }
+	$data['producto'] = makeSafe($_REQUEST['producto']);
+		if($data['producto'] == empty_lookup_value){ $data['producto'] = ''; }
 	$data['marca'] = makeSafe($_REQUEST['marca']);
 		if($data['marca'] == empty_lookup_value){ $data['marca'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['modelo']);
@@ -178,7 +182,7 @@ function equipos_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `producto`=' . (($data['producto'] !== '' && $data['producto'] !== NULL) ? "'{$data['producto']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="equipos_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -676,6 +680,7 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		$jsReadOnly .= "\tjQuery('#interno').replaceWith('<div class=\"form-control-static\" id=\"interno\">' + (jQuery('#interno').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#articulo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#articulo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#producto').replaceWith('<div class=\"form-control-static\" id=\"producto\">' + (jQuery('#producto').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#marca').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#marca_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#modelo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
@@ -728,6 +733,7 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 	$templateCode = str_replace('<%%UPLOADFILE(id)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(interno)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(articulo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(producto)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(marca)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(modelo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(familia)%%>', '', $templateCode);
@@ -747,6 +753,9 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(articulo)%%>', safe_html($urow['articulo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(articulo)%%>', html_attr($row['articulo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(articulo)%%>', urlencode($urow['articulo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(producto)%%>', safe_html($urow['producto']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(producto)%%>', html_attr($row['producto']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(producto)%%>', urlencode($urow['producto']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', safe_html($urow['marca']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', html_attr($row['marca']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(marca)%%>', urlencode($urow['marca']), $templateCode);
@@ -775,6 +784,8 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		$templateCode = str_replace('<%%URLVALUE(interno)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(articulo)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(articulo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(producto)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(producto)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(marca)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(marca)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(modelo)%%>', '', $templateCode);

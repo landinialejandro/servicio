@@ -60,6 +60,14 @@
 
 				<div class="form-group">
 					<hr class="hidden-md hidden-lg">
+					<label for="servicio" class="control-label col-lg-3" data-parent_link="view_parent_modal">Servicio</label>
+					<div class="col-lg-9">
+						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(servicio)%%><%%PLINK(servicio)%%><%%ADDNEW(codigo_servicios)%%></div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<hr class="hidden-md hidden-lg">
 					<label for="ubicacion" class="control-label col-lg-3">Ubicacion</label>
 					<div class="col-lg-9">
 						<input maxlength="40" type="text" class="form-control" name="ubicacion" id="ubicacion" value="<%%VALUE(ubicacion)%%>">
@@ -86,7 +94,7 @@
 					<hr class="hidden-md hidden-lg">
 					<label for="comentarios" class="control-label col-lg-3">Comentarios</label>
 					<div class="col-lg-9">
-						<input maxlength="40" type="text" class="form-control" name="comentarios" id="comentarios" value="<%%VALUE(comentarios)%%>">
+						<textarea class="form-control" name="comentarios" id="comentarios" rows="5"><%%VALUE(comentarios)%%></textarea>
 					</div>
 				</div>
 

@@ -22,14 +22,15 @@ function planificacion_equipos_insert(){
 		if($data['equipo'] == empty_lookup_value){ $data['equipo'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['equipo']);
 		if($data['modelo'] == empty_lookup_value){ $data['modelo'] = ''; }
+	$data['servicio'] = makeSafe($_REQUEST['servicio']);
+		if($data['servicio'] == empty_lookup_value){ $data['servicio'] = ''; }
 	$data['ubicacion'] = makeSafe($_REQUEST['ubicacion']);
 		if($data['ubicacion'] == empty_lookup_value){ $data['ubicacion'] = ''; }
 	$data['horometro'] = makeSafe($_REQUEST['horometro']);
 		if($data['horometro'] == empty_lookup_value){ $data['horometro'] = ''; }
 	$data['cumplido'] = makeSafe($_REQUEST['cumplido']);
 		if($data['cumplido'] == empty_lookup_value){ $data['cumplido'] = ''; }
-	$data['comentarios'] = makeSafe($_REQUEST['comentarios']);
-		if($data['comentarios'] == empty_lookup_value){ $data['comentarios'] = ''; }
+	$data['comentarios'] = br2nl(makeSafe($_REQUEST['comentarios']));
 	$data['fecha_cumplido'] = intval($_REQUEST['fecha_cumplidoYear']) . '-' . intval($_REQUEST['fecha_cumplidoMonth']) . '-' . intval($_REQUEST['fecha_cumplidoDay']);
 	$data['fecha_cumplido'] = parseMySQLDate($data['fecha_cumplido'], '');
 	$data['distancia'] = makeSafe($_REQUEST['distancia']);
@@ -42,7 +43,7 @@ function planificacion_equipos_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `planificacion_equipos` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `cliente`=' . (($data['cliente'] !== '' && $data['cliente'] !== NULL) ? "'{$data['cliente']}'" : 'NULL') . ', `equipo`=' . (($data['equipo'] !== '' && $data['equipo'] !== NULL) ? "'{$data['equipo']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `ubicacion`=' . (($data['ubicacion'] !== '' && $data['ubicacion'] !== NULL) ? "'{$data['ubicacion']}'" : 'NULL') . ', `horometro`=' . (($data['horometro'] !== '' && $data['horometro'] !== NULL) ? "'{$data['horometro']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL') . ', `comentarios`=' . (($data['comentarios'] !== '' && $data['comentarios'] !== NULL) ? "'{$data['comentarios']}'" : 'NULL') . ', `fecha_cumplido`=' . (($data['fecha_cumplido'] !== '' && $data['fecha_cumplido'] !== NULL) ? "'{$data['fecha_cumplido']}'" : 'NULL') . ', `distancia`=' . (($data['distancia'] !== '' && $data['distancia'] !== NULL) ? "'{$data['distancia']}'" : 'NULL'), $o);
+	sql('insert into `planificacion_equipos` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `cliente`=' . (($data['cliente'] !== '' && $data['cliente'] !== NULL) ? "'{$data['cliente']}'" : 'NULL') . ', `equipo`=' . (($data['equipo'] !== '' && $data['equipo'] !== NULL) ? "'{$data['equipo']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `servicio`=' . (($data['servicio'] !== '' && $data['servicio'] !== NULL) ? "'{$data['servicio']}'" : 'NULL') . ', `ubicacion`=' . (($data['ubicacion'] !== '' && $data['ubicacion'] !== NULL) ? "'{$data['ubicacion']}'" : 'NULL') . ', `horometro`=' . (($data['horometro'] !== '' && $data['horometro'] !== NULL) ? "'{$data['horometro']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL') . ', `comentarios`=' . (($data['comentarios'] !== '' && $data['comentarios'] !== NULL) ? "'{$data['comentarios']}'" : 'NULL') . ', `fecha_cumplido`=' . (($data['fecha_cumplido'] !== '' && $data['fecha_cumplido'] !== NULL) ? "'{$data['fecha_cumplido']}'" : 'NULL') . ', `distancia`=' . (($data['distancia'] !== '' && $data['distancia'] !== NULL) ? "'{$data['distancia']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"planificacion_equipos_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -142,14 +143,15 @@ function planificacion_equipos_update($selected_id){
 		if($data['equipo'] == empty_lookup_value){ $data['equipo'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['equipo']);
 		if($data['modelo'] == empty_lookup_value){ $data['modelo'] = ''; }
+	$data['servicio'] = makeSafe($_REQUEST['servicio']);
+		if($data['servicio'] == empty_lookup_value){ $data['servicio'] = ''; }
 	$data['ubicacion'] = makeSafe($_REQUEST['ubicacion']);
 		if($data['ubicacion'] == empty_lookup_value){ $data['ubicacion'] = ''; }
 	$data['horometro'] = makeSafe($_REQUEST['horometro']);
 		if($data['horometro'] == empty_lookup_value){ $data['horometro'] = ''; }
 	$data['cumplido'] = makeSafe($_REQUEST['cumplido']);
 		if($data['cumplido'] == empty_lookup_value){ $data['cumplido'] = ''; }
-	$data['comentarios'] = makeSafe($_REQUEST['comentarios']);
-		if($data['comentarios'] == empty_lookup_value){ $data['comentarios'] = ''; }
+	$data['comentarios'] = br2nl(makeSafe($_REQUEST['comentarios']));
 	$data['fecha_cumplido'] = intval($_REQUEST['fecha_cumplidoYear']) . '-' . intval($_REQUEST['fecha_cumplidoMonth']) . '-' . intval($_REQUEST['fecha_cumplidoDay']);
 	$data['fecha_cumplido'] = parseMySQLDate($data['fecha_cumplido'], '');
 	$data['distancia'] = makeSafe($_REQUEST['distancia']);
@@ -163,7 +165,7 @@ function planificacion_equipos_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `planificacion_equipos` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `cliente`=' . (($data['cliente'] !== '' && $data['cliente'] !== NULL) ? "'{$data['cliente']}'" : 'NULL') . ', `equipo`=' . (($data['equipo'] !== '' && $data['equipo'] !== NULL) ? "'{$data['equipo']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `ubicacion`=' . (($data['ubicacion'] !== '' && $data['ubicacion'] !== NULL) ? "'{$data['ubicacion']}'" : 'NULL') . ', `horometro`=' . (($data['horometro'] !== '' && $data['horometro'] !== NULL) ? "'{$data['horometro']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL') . ', `comentarios`=' . (($data['comentarios'] !== '' && $data['comentarios'] !== NULL) ? "'{$data['comentarios']}'" : 'NULL') . ', `fecha_cumplido`=' . (($data['fecha_cumplido'] !== '' && $data['fecha_cumplido'] !== NULL) ? "'{$data['fecha_cumplido']}'" : 'NULL') . ', `distancia`=' . (($data['distancia'] !== '' && $data['distancia'] !== NULL) ? "'{$data['distancia']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `planificacion_equipos` set       `planificacion`=' . (($data['planificacion'] !== '' && $data['planificacion'] !== NULL) ? "'{$data['planificacion']}'" : 'NULL') . ', `cliente`=' . (($data['cliente'] !== '' && $data['cliente'] !== NULL) ? "'{$data['cliente']}'" : 'NULL') . ', `equipo`=' . (($data['equipo'] !== '' && $data['equipo'] !== NULL) ? "'{$data['equipo']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `servicio`=' . (($data['servicio'] !== '' && $data['servicio'] !== NULL) ? "'{$data['servicio']}'" : 'NULL') . ', `ubicacion`=' . (($data['ubicacion'] !== '' && $data['ubicacion'] !== NULL) ? "'{$data['ubicacion']}'" : 'NULL') . ', `horometro`=' . (($data['horometro'] !== '' && $data['horometro'] !== NULL) ? "'{$data['horometro']}'" : 'NULL') . ', `cumplido`=' . (($data['cumplido'] !== '' && $data['cumplido'] !== NULL) ? "'{$data['cumplido']}'" : 'NULL') . ', `comentarios`=' . (($data['comentarios'] !== '' && $data['comentarios'] !== NULL) ? "'{$data['comentarios']}'" : 'NULL') . ', `fecha_cumplido`=' . (($data['fecha_cumplido'] !== '' && $data['fecha_cumplido'] !== NULL) ? "'{$data['fecha_cumplido']}'" : 'NULL') . ', `distancia`=' . (($data['distancia'] !== '' && $data['distancia'] !== NULL) ? "'{$data['distancia']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="planificacion_equipos_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -208,6 +210,7 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 	$filterer_planificacion = thisOr(undo_magic_quotes($_REQUEST['filterer_planificacion']), '');
 	$filterer_cliente = thisOr(undo_magic_quotes($_REQUEST['filterer_cliente']), '');
 	$filterer_equipo = thisOr(undo_magic_quotes($_REQUEST['filterer_equipo']), '');
+	$filterer_servicio = thisOr(undo_magic_quotes($_REQUEST['filterer_servicio']), '');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -219,6 +222,8 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 	$combo_cliente = new DataCombo;
 	// combobox: equipo
 	$combo_equipo = new DataCombo;
+	// combobox: servicio
+	$combo_servicio = new DataCombo;
 	// combobox: fecha_cumplido
 	$combo_fecha_cumplido = new DateCombo;
 	$combo_fecha_cumplido->DateFormat = "mdy";
@@ -260,11 +265,13 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		$combo_planificacion->SelectedData = $row['planificacion'];
 		$combo_cliente->SelectedData = $row['cliente'];
 		$combo_equipo->SelectedData = $row['equipo'];
+		$combo_servicio->SelectedData = $row['servicio'];
 		$combo_fecha_cumplido->DefaultDate = $row['fecha_cumplido'];
 	}else{
 		$combo_planificacion->SelectedData = $filterer_planificacion;
 		$combo_cliente->SelectedData = $filterer_cliente;
 		$combo_equipo->SelectedData = $filterer_equipo;
+		$combo_servicio->SelectedData = $filterer_servicio;
 	}
 	$combo_planificacion->HTML = '<span id="planificacion-container' . $rnd1 . '"></span><input type="hidden" name="planificacion" id="planificacion' . $rnd1 . '" value="' . html_attr($combo_planificacion->SelectedData) . '">';
 	$combo_planificacion->MatchText = '<span id="planificacion-container-readonly' . $rnd1 . '"></span><input type="hidden" name="planificacion" id="planificacion' . $rnd1 . '" value="' . html_attr($combo_planificacion->SelectedData) . '">';
@@ -272,6 +279,8 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 	$combo_cliente->MatchText = '<span id="cliente-container-readonly' . $rnd1 . '"></span><input type="hidden" name="cliente" id="cliente' . $rnd1 . '" value="' . html_attr($combo_cliente->SelectedData) . '">';
 	$combo_equipo->HTML = '<span id="equipo-container' . $rnd1 . '"></span><input type="hidden" name="equipo" id="equipo' . $rnd1 . '" value="' . html_attr($combo_equipo->SelectedData) . '">';
 	$combo_equipo->MatchText = '<span id="equipo-container-readonly' . $rnd1 . '"></span><input type="hidden" name="equipo" id="equipo' . $rnd1 . '" value="' . html_attr($combo_equipo->SelectedData) . '">';
+	$combo_servicio->HTML = '<span id="servicio-container' . $rnd1 . '"></span><input type="hidden" name="servicio" id="servicio' . $rnd1 . '" value="' . html_attr($combo_servicio->SelectedData) . '">';
+	$combo_servicio->MatchText = '<span id="servicio-container-readonly' . $rnd1 . '"></span><input type="hidden" name="servicio" id="servicio' . $rnd1 . '" value="' . html_attr($combo_servicio->SelectedData) . '">';
 
 	ob_start();
 	?>
@@ -281,12 +290,14 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		AppGini.current_planificacion__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['planificacion'] : $filterer_planificacion); ?>"};
 		AppGini.current_cliente__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['cliente'] : $filterer_cliente); ?>"};
 		AppGini.current_equipo__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['equipo'] : $filterer_equipo); ?>"};
+		AppGini.current_servicio__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['servicio'] : $filterer_servicio); ?>"};
 
 		jQuery(function() {
 			setTimeout(function(){
 				if(typeof(planificacion_reload__RAND__) == 'function') planificacion_reload__RAND__();
 				if(typeof(cliente_reload__RAND__) == 'function') cliente_reload__RAND__();
 				if(typeof(equipo_reload__RAND__) == 'function') equipo_reload__RAND__();
+				if(typeof(servicio_reload__RAND__) == 'function') servicio_reload__RAND__();
 			}, 10); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
 		function planificacion_reload__RAND__(){
@@ -520,6 +531,83 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		<?php } ?>
 
 		}
+		function servicio_reload__RAND__(){
+		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint){ ?>
+
+			$j("#servicio-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c){
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_servicio__RAND__.value, t: 'planificacion_equipos', f: 'servicio' },
+						success: function(resp){
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="servicio"]').val(resp.results[0].id);
+							$j('[id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+
+							if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term){ /* */ return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page){ /* */ return { s: term, p: page, t: 'planificacion_equipos', f: 'servicio' }; },
+					results: function(resp, page){ /* */ return resp; }
+				},
+				escapeMarkup: function(str){ /* */ return str; }
+			}).on('change', function(e){
+				AppGini.current_servicio__RAND__.value = e.added.id;
+				AppGini.current_servicio__RAND__.text = e.added.text;
+				$j('[name="servicio"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+
+				if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+			});
+
+			if(!$j("#servicio-container__RAND__").length){
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_servicio__RAND__.value, t: 'planificacion_equipos', f: 'servicio' },
+					success: function(resp){
+						$j('[name="servicio"]').val(resp.results[0].id);
+						$j('[id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+						if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php }else{ ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_servicio__RAND__.value, t: 'planificacion_equipos', f: 'servicio' },
+				success: function(resp){
+					$j('[id=servicio-container__RAND__], [id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+					if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 	</script>
 	<?php
 
@@ -584,6 +672,8 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		$jsReadOnly .= "\tjQuery('#cliente_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#equipo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#equipo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#servicio').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#servicio_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#ubicacion').replaceWith('<div class=\"form-control-static\" id=\"ubicacion\">' + (jQuery('#ubicacion').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#horometro').replaceWith('<div class=\"form-control-static\" id=\"horometro\">' + (jQuery('#horometro').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('#cumplido').prop('disabled', true);\n";
@@ -609,11 +699,14 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 	$templateCode = str_replace('<%%COMBO(equipo)%%>', $combo_equipo->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(equipo)%%>', $combo_equipo->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(equipo)%%>', urlencode($combo_equipo->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(servicio)%%>', $combo_servicio->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(servicio)%%>', $combo_servicio->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(servicio)%%>', urlencode($combo_servicio->MatchText), $templateCode);
 	$templateCode = str_replace('<%%COMBO(fecha_cumplido)%%>', ($selected_id && !$arrPerm[3] ? '<div class="form-control-static">' . $combo_fecha_cumplido->GetHTML(true) . '</div>' : $combo_fecha_cumplido->GetHTML()), $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(fecha_cumplido)%%>', $combo_fecha_cumplido->GetHTML(true), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => array('parent table name', 'lookup field caption') */
-	$lookup_fields = array(  'planificacion' => array('planificaciones', 'Planificacion'), 'cliente' => array('clientes', 'Cliente'), 'equipo' => array('equipos', 'Equipo'));
+	$lookup_fields = array(  'planificacion' => array('planificaciones', 'Planificacion'), 'cliente' => array('clientes', 'Cliente'), 'equipo' => array('equipos', 'Equipo'), 'servicio' => array('codigo_servicios', 'Servicio'));
 	foreach($lookup_fields as $luf => $ptfc){
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -633,6 +726,7 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 	$templateCode = str_replace('<%%UPLOADFILE(planificacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cliente)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(equipo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(servicio)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(ubicacion)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(horometro)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cumplido)%%>', '', $templateCode);
@@ -654,6 +748,9 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(equipo)%%>', safe_html($urow['equipo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(equipo)%%>', html_attr($row['equipo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(equipo)%%>', urlencode($urow['equipo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(servicio)%%>', safe_html($urow['servicio']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(servicio)%%>', html_attr($row['servicio']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(servicio)%%>', urlencode($urow['servicio']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', safe_html($urow['ubicacion']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(ubicacion)%%>', html_attr($row['ubicacion']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode($urow['ubicacion']), $templateCode);
@@ -661,8 +758,11 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(horometro)%%>', html_attr($row['horometro']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(horometro)%%>', urlencode($urow['horometro']), $templateCode);
 		$templateCode = str_replace('<%%CHECKED(cumplido)%%>', ($row['cumplido'] ? "checked" : ""), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(comentarios)%%>', safe_html($urow['comentarios']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(comentarios)%%>', html_attr($row['comentarios']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)){
+			$templateCode = str_replace('<%%VALUE(comentarios)%%>', safe_html($urow['comentarios']), $templateCode);
+		}else{
+			$templateCode = str_replace('<%%VALUE(comentarios)%%>', html_attr($row['comentarios']), $templateCode);
+		}
 		$templateCode = str_replace('<%%URLVALUE(comentarios)%%>', urlencode($urow['comentarios']), $templateCode);
 		$templateCode = str_replace('<%%VALUE(fecha_cumplido)%%>', @date('m/d/Y', @strtotime(html_attr($row['fecha_cumplido']))), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(fecha_cumplido)%%>', urlencode(@date('m/d/Y', @strtotime(html_attr($urow['fecha_cumplido'])))), $templateCode);
@@ -678,6 +778,8 @@ function planificacion_equipos_form($selected_id = '', $AllowUpdate = 1, $AllowI
 		$templateCode = str_replace('<%%URLVALUE(cliente)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(equipo)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(equipo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(servicio)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(servicio)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(ubicacion)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(ubicacion)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(horometro)%%>', '', $templateCode);

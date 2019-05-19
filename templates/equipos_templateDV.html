@@ -45,6 +45,14 @@
 
 				<div class="form-group">
 					<hr class="hidden-md hidden-lg">
+					<label for="producto" class="control-label col-lg-3">Producto</label>
+					<div class="col-lg-9">
+						<input maxlength="40" type="text" class="form-control" name="producto" id="producto" value="<%%VALUE(producto)%%>">
+					</div>
+				</div>
+
+				<div class="form-group">
+					<hr class="hidden-md hidden-lg">
 					<label for="marca" class="control-label col-lg-3" data-parent_link="view_parent_modal">Marca</label>
 					<div class="col-lg-9">
 						<div class="form-control-static" style="white-space: nowrap; overflow-x: hidden;"><%%COMBO(marca)%%><%%PLINK(marca)%%><%%ADDNEW(marcas)%%></div>

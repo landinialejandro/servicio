@@ -25,6 +25,7 @@
 		"`equipos`.`id`" => "id",
 		"`equipos`.`interno`" => "interno",
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
+		"`equipos`.`producto`" => "producto",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
 		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
@@ -38,13 +39,14 @@
 		1 => '`equipos`.`id`',
 		2 => 2,
 		3 => '`articulos1`.`articulo`',
-		4 => '`marcas1`.`marca`',
-		5 => '`modelos1`.`modelo`',
-		6 => '`familias1`.`familia`',
-		7 => 7,
+		4 => 4,
+		5 => '`marcas1`.`marca`',
+		6 => '`modelos1`.`modelo`',
+		7 => '`familias1`.`familia`',
 		8 => 8,
 		9 => 9,
-		10 => 10
+		10 => 10,
+		11 => 11
 	);
 
 	// Fields that can be displayed in the csv file
@@ -52,6 +54,7 @@
 		"`equipos`.`id`" => "id",
 		"`equipos`.`interno`" => "interno",
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
+		"`equipos`.`producto`" => "producto",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
 		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
@@ -65,6 +68,7 @@
 		"`equipos`.`id`" => "ID",
 		"`equipos`.`interno`" => "Interno",
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "Articulo",
+		"`equipos`.`producto`" => "Producto",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "Marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "Modelo",
 		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "Familia",
@@ -79,6 +83,7 @@
 		"`equipos`.`id`" => "id",
 		"`equipos`.`interno`" => "interno",
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
+		"`equipos`.`producto`" => "producto",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
 		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
@@ -119,10 +124,10 @@
 	$x->TableIcon = "resources/table_icons/autos.png";
 	$x->PrimaryKey = "`equipos`.`id`";
 
-	$x->ColWidth   = array(  150, 150, 150, 150, 150, 150, 150, 150, 150);
-	$x->ColCaption = array("Interno", "Articulo", "Marca", "Modelo", "Familia", "Numero serie", "Motor", "Motor modelo", "Motor serie");
-	$x->ColFieldName = array('interno', 'articulo', 'marca', 'modelo', 'familia', 'numero_serie', 'motor_marca', 'motor_modelo', 'motor_serie');
-	$x->ColNumber  = array(2, 3, 4, 5, 6, 7, 8, 9, 10);
+	$x->ColWidth   = array(  150, 150, 150, 150, 150, 150, 150, 150, 150, 150);
+	$x->ColCaption = array("Interno", "Articulo", "Producto", "Marca", "Modelo", "Familia", "Numero serie", "Motor", "Motor modelo", "Motor serie");
+	$x->ColFieldName = array('interno', 'articulo', 'producto', 'marca', 'modelo', 'familia', 'numero_serie', 'motor_marca', 'motor_modelo', 'motor_serie');
+	$x->ColNumber  = array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/equipos_templateTV.html';

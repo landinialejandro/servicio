@@ -16,8 +16,7 @@ function repuestos_insert(){
 
 	$data['codigo'] = makeSafe($_REQUEST['codigo']);
 		if($data['codigo'] == empty_lookup_value){ $data['codigo'] = ''; }
-	$data['descripcion'] = makeSafe($_REQUEST['descripcion']);
-		if($data['descripcion'] == empty_lookup_value){ $data['descripcion'] = ''; }
+	$data['descripcion'] = br2nl(makeSafe($_REQUEST['descripcion']));
 
 	// hook: repuestos_before_insert
 	if(function_exists('repuestos_before_insert')){
@@ -120,8 +119,7 @@ function repuestos_update($selected_id){
 
 	$data['codigo'] = makeSafe($_REQUEST['codigo']);
 		if($data['codigo'] == empty_lookup_value){ $data['codigo'] = ''; }
-	$data['descripcion'] = makeSafe($_REQUEST['descripcion']);
-		if($data['descripcion'] == empty_lookup_value){ $data['descripcion'] = ''; }
+	$data['descripcion'] = br2nl(makeSafe($_REQUEST['descripcion']));
 	$data['selectedID']=makeSafe($selected_id);
 
 	// hook: repuestos_before_update
@@ -320,8 +318,11 @@ function repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(codigo)%%>', safe_html($urow['codigo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(codigo)%%>', html_attr($row['codigo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(codigo)%%>', urlencode($urow['codigo']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(descripcion)%%>', safe_html($urow['descripcion']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(descripcion)%%>', html_attr($row['descripcion']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)){
+			$templateCode = str_replace('<%%VALUE(descripcion)%%>', safe_html($urow['descripcion']), $templateCode);
+		}else{
+			$templateCode = str_replace('<%%VALUE(descripcion)%%>', html_attr($row['descripcion']), $templateCode);
+		}
 		$templateCode = str_replace('<%%URLVALUE(descripcion)%%>', urlencode($urow['descripcion']), $templateCode);
 	}else{
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);

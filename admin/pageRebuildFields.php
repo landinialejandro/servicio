@@ -14,6 +14,7 @@
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
 			'interno' => array('appgini' => 'VARCHAR(40) null '),
 			'articulo' => array('appgini' => 'INT unsigned null '),
+			'producto' => array('appgini' => 'VARCHAR(40) null '),
 			'marca' => array('appgini' => 'INT unsigned null '),
 			'modelo' => array('appgini' => 'INT unsigned null '),
 			'familia' => array('appgini' => 'INT unsigned null '),
@@ -34,7 +35,7 @@
 		'repuestos' => array(   
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
 			'codigo' => array('appgini' => 'VARCHAR(40) null '),
-			'descripcion' => array('appgini' => 'VARCHAR(40) null ')
+			'descripcion' => array('appgini' => 'TEXT null ')
 		),
 		'articulos' => array(   
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
@@ -68,10 +69,11 @@
 			'cliente' => array('appgini' => 'INT unsigned null '),
 			'equipo' => array('appgini' => 'INT unsigned null '),
 			'modelo' => array('appgini' => 'INT unsigned null '),
+			'servicio' => array('appgini' => 'INT unsigned null '),
 			'ubicacion' => array('appgini' => 'VARCHAR(40) null '),
 			'horometro' => array('appgini' => 'VARCHAR(40) null '),
 			'cumplido' => array('appgini' => 'INT null default \'0\' '),
-			'comentarios' => array('appgini' => 'VARCHAR(40) null '),
+			'comentarios' => array('appgini' => 'TEXT null '),
 			'fecha_cumplido' => array('appgini' => 'DATE null '),
 			'distancia' => array('appgini' => 'VARCHAR(40) null ')
 		),
@@ -92,7 +94,8 @@
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
 			'planificacion' => array('appgini' => 'INT unsigned null '),
 			'interno' => array('appgini' => 'INT unsigned null '),
-			'comentario' => array('appgini' => 'VARCHAR(40) null ')
+			'comentario' => array('appgini' => 'TEXT null '),
+			'cumplido' => array('appgini' => 'INT null default \'0\' ')
 		)
 	);
 

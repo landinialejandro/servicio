@@ -27,6 +27,7 @@
 		"IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') /* Cliente */" => "cliente",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Equipo */" => "equipo",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio",
 		"`planificacion_equipos`.`ubicacion`" => "ubicacion",
 		"`planificacion_equipos`.`horometro`" => "horometro",
 		"concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>')" => "cumplido",
@@ -41,12 +42,13 @@
 		3 => '`clientes1`.`nombre`',
 		4 => '`equipos1`.`interno`',
 		5 => 5,
-		6 => 6,
+		6 => '`codigo_servicios1`.`servicio`',
 		7 => 7,
-		8 => '`planificacion_equipos`.`cumplido`',
-		9 => 9,
-		10 => '`planificacion_equipos`.`fecha_cumplido`',
-		11 => 11
+		8 => 8,
+		9 => '`planificacion_equipos`.`cumplido`',
+		10 => 10,
+		11 => '`planificacion_equipos`.`fecha_cumplido`',
+		12 => 12
 	);
 
 	// Fields that can be displayed in the csv file
@@ -56,6 +58,7 @@
 		"IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') /* Cliente */" => "cliente",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Equipo */" => "equipo",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio",
 		"`planificacion_equipos`.`ubicacion`" => "ubicacion",
 		"`planificacion_equipos`.`horometro`" => "horometro",
 		"`planificacion_equipos`.`cumplido`" => "cumplido",
@@ -70,6 +73,7 @@
 		"IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') /* Cliente */" => "Cliente",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Equipo */" => "Equipo",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "Modelo",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "Servicio",
 		"`planificacion_equipos`.`ubicacion`" => "Ubicacion",
 		"`planificacion_equipos`.`horometro`" => "Horometro",
 		"`planificacion_equipos`.`cumplido`" => "Cumplido",
@@ -85,6 +89,7 @@
 		"IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') /* Cliente */" => "cliente",
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Equipo */" => "equipo",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio",
 		"`planificacion_equipos`.`ubicacion`" => "ubicacion",
 		"`planificacion_equipos`.`horometro`" => "horometro",
 		"concat('<i class=\"glyphicon glyphicon-', if(`planificacion_equipos`.`cumplido`, 'check', 'unchecked'), '\"></i>')" => "cumplido",
@@ -94,9 +99,9 @@
 	);
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = array(  'planificacion' => 'Planificacion', 'cliente' => 'Cliente', 'equipo' => 'Equipo');
+	$x->filterers = array(  'planificacion' => 'Planificacion', 'cliente' => 'Cliente', 'equipo' => 'Equipo', 'servicio' => 'Servicio');
 
-	$x->QueryFrom = "`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ";
+	$x->QueryFrom = "`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -124,10 +129,10 @@
 	$x->TableIcon = "table.gif";
 	$x->PrimaryKey = "`planificacion_equipos`.`id`";
 
-	$x->ColWidth   = array(  150, 150, 150, 150, 150, 150, 150, 150, 150, 150);
-	$x->ColCaption = array("Planificacion", "Cliente", "Equipo", "Modelo", "Ubicacion", "Horometro", "Cumplido", "Comentarios", "Fecha cumplido", "Distancia");
-	$x->ColFieldName = array('planificacion', 'cliente', 'equipo', 'modelo', 'ubicacion', 'horometro', 'cumplido', 'comentarios', 'fecha_cumplido', 'distancia');
-	$x->ColNumber  = array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11);
+	$x->ColWidth   = array(  150, 150, 150, 150, 150, 150, 150, 150, 150, 150, 150);
+	$x->ColCaption = array("Planificacion", "Cliente", "Equipo", "Modelo", "Servicio", "Ubicacion", "Horometro", "Cumplido", "Comentarios", "Fecha cumplido", "Distancia");
+	$x->ColFieldName = array('planificacion', 'cliente', 'equipo', 'modelo', 'servicio', 'ubicacion', 'horometro', 'cumplido', 'comentarios', 'fecha_cumplido', 'distancia');
+	$x->ColNumber  = array(2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/planificacion_equipos_templateTV.html';
