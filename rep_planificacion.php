@@ -75,6 +75,13 @@ include("$currDir/header.php");
                             $rep_from = get_sql_from('equipo_repuestos');
                             //echo "SELECT {$rep_fields} FROM {$rep_from} {$where}";
                             $rep = sql("SELECT {$rep_fields} FROM {$rep_from} {$where}",$e);
+                            
+                            //planificacion_pendientes
+                            
+                            $where = "AND planificacion_pendientes.interno = {$equipo['id']} and (planificacion_pendientes.cumplido = 0 or planificacion_pendientes.cumplido IS null )";
+                            $pend_fields = get_sql_fields('planificacion_pendientes');
+                            $pend_from = get_sql_from('planificacion_pendientes');
+                            $pend = sql("SELECT {$pend_fields} FROM {$pend_from} {$where}",$e);
                         ?>
                 <div class="panel-heading">
                     <div class="col-md-6">
@@ -98,6 +105,11 @@ include("$currDir/header.php");
                         </div>
                     </div>
                 </div>
+                <label class="text-center">Pendientes</label>
+                <?php foreach($pend as $i => $item_pend){ 
+                                            ?>
+                                    <p><?php echo $item_pend['comentario']; ?></p>
+                            <?php } ?>
                 <table class="table table-striped table-bordered">
                         <thead>
                             <th class="text-center">Codigo</th>
