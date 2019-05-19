@@ -14,7 +14,7 @@
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
 			'interno' => array('appgini' => 'VARCHAR(40) null '),
 			'articulo' => array('appgini' => 'INT unsigned null '),
-			'producto' => array('appgini' => 'VARCHAR(40) null '),
+			'producto' => array('appgini' => 'TEXT null '),
 			'marca' => array('appgini' => 'INT unsigned null '),
 			'modelo' => array('appgini' => 'INT unsigned null '),
 			'familia' => array('appgini' => 'INT unsigned null '),

@@ -18,8 +18,7 @@ function equipos_insert(){
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
 	$data['articulo'] = makeSafe($_REQUEST['articulo']);
 		if($data['articulo'] == empty_lookup_value){ $data['articulo'] = ''; }
-	$data['producto'] = makeSafe($_REQUEST['producto']);
-		if($data['producto'] == empty_lookup_value){ $data['producto'] = ''; }
+	$data['producto'] = br2nl(makeSafe($_REQUEST['producto']));
 	$data['marca'] = makeSafe($_REQUEST['marca']);
 		if($data['marca'] == empty_lookup_value){ $data['marca'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['modelo']);
@@ -157,8 +156,7 @@ function equipos_update($selected_id){
 		if($data['interno'] == empty_lookup_value){ $data['interno'] = ''; }
 	$data['articulo'] = makeSafe($_REQUEST['articulo']);
 		if($data['articulo'] == empty_lookup_value){ $data['articulo'] = ''; }
-	$data['producto'] = makeSafe($_REQUEST['producto']);
-		if($data['producto'] == empty_lookup_value){ $data['producto'] = ''; }
+	$data['producto'] = br2nl(makeSafe($_REQUEST['producto']));
 	$data['marca'] = makeSafe($_REQUEST['marca']);
 		if($data['marca'] == empty_lookup_value){ $data['marca'] = ''; }
 	$data['modelo'] = makeSafe($_REQUEST['modelo']);
@@ -753,8 +751,11 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(articulo)%%>', safe_html($urow['articulo']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(articulo)%%>', html_attr($row['articulo']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(articulo)%%>', urlencode($urow['articulo']), $templateCode);
-		if( $dvprint) $templateCode = str_replace('<%%VALUE(producto)%%>', safe_html($urow['producto']), $templateCode);
-		if(!$dvprint) $templateCode = str_replace('<%%VALUE(producto)%%>', html_attr($row['producto']), $templateCode);
+		if($dvprint || (!$AllowUpdate && !$AllowInsert)){
+			$templateCode = str_replace('<%%VALUE(producto)%%>', safe_html($urow['producto']), $templateCode);
+		}else{
+			$templateCode = str_replace('<%%VALUE(producto)%%>', html_attr($row['producto']), $templateCode);
+		}
 		$templateCode = str_replace('<%%URLVALUE(producto)%%>', urlencode($urow['producto']), $templateCode);
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', safe_html($urow['marca']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(marca)%%>', html_attr($row['marca']), $templateCode);
