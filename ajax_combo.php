@@ -133,6 +133,17 @@
 				'inherit_permissions' => false,
 				'list_type' => 0,
 				'not_null' => false
+			),
+			'servicio' => array(
+				'parent_table' => 'codigo_servicios',
+				'parent_pk_field' => 'id',
+				'parent_caption' => '`codigo_servicios`.`servicio`',
+				'parent_from' => '`codigo_servicios` ',
+				'filterers' => array(),
+				'custom_query' => '',
+				'inherit_permissions' => false,
+				'list_type' => 0,
+				'not_null' => false
 			)
 		),
 		'tecnicos' => array(  

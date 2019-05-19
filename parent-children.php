@@ -144,9 +144,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Repuesto', 3 => 'Descripcion', 4 => 'Cantidad'),
-					'display-field-names' => array(1 => 'interno', 2 => 'codigo', 3 => 'descripcion', 4 => 'cantidad'),
-					'sortable-fields' => array(0 => '`equipo_repuestos`.`id`', 1 => '`equipos1`.`interno`', 2 => '`repuestos1`.`codigo`', 3 => '`repuestos1`.`descripcion`', 4 => 5),
+					'display-fields' => array(1 => 'Interno', 2 => 'Repuesto', 3 => 'Descripcion', 4 => 'Cantidad', 5 => 'Servicio'),
+					'display-field-names' => array(1 => 'interno', 2 => 'codigo', 3 => 'descripcion', 4 => 'cantidad', 5 => 'servicio'),
+					'sortable-fields' => array(0 => '`equipo_repuestos`.`id`', 1 => '`equipos1`.`interno`', 2 => '`repuestos1`.`codigo`', 3 => '`repuestos1`.`descripcion`', 4 => 5, 5 => '`codigo_servicios1`.`servicio`'),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -155,7 +155,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipo_repuestos',
 					'template-printable' => 'children-equipo_repuestos-printable',
-					'query' => "SELECT `equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad' FROM `equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` "
+					'query' => "SELECT `equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio' FROM `equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`equipo_repuestos`.`servicio` "
 				),
 				'codigo' => array(   
 					'parent-table' => 'repuestos',
@@ -167,9 +167,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Repuesto', 3 => 'Descripcion', 4 => 'Cantidad'),
-					'display-field-names' => array(1 => 'interno', 2 => 'codigo', 3 => 'descripcion', 4 => 'cantidad'),
-					'sortable-fields' => array(0 => '`equipo_repuestos`.`id`', 1 => '`equipos1`.`interno`', 2 => '`repuestos1`.`codigo`', 3 => '`repuestos1`.`descripcion`', 4 => 5),
+					'display-fields' => array(1 => 'Interno', 2 => 'Repuesto', 3 => 'Descripcion', 4 => 'Cantidad', 5 => 'Servicio'),
+					'display-field-names' => array(1 => 'interno', 2 => 'codigo', 3 => 'descripcion', 4 => 'cantidad', 5 => 'servicio'),
+					'sortable-fields' => array(0 => '`equipo_repuestos`.`id`', 1 => '`equipos1`.`interno`', 2 => '`repuestos1`.`codigo`', 3 => '`repuestos1`.`descripcion`', 4 => 5, 5 => '`codigo_servicios1`.`servicio`'),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -178,7 +178,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipo_repuestos',
 					'template-printable' => 'children-equipo_repuestos-printable',
-					'query' => "SELECT `equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad' FROM `equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` "
+					'query' => "SELECT `equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio' FROM `equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`equipo_repuestos`.`servicio` "
 				)
 			),
 			'tecnicos' => array(   

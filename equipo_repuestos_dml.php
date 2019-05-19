@@ -22,6 +22,8 @@ function equipo_repuestos_insert(){
 		if($data['descripcion'] == empty_lookup_value){ $data['descripcion'] = ''; }
 	$data['cantidad'] = makeSafe($_REQUEST['cantidad']);
 		if($data['cantidad'] == empty_lookup_value){ $data['cantidad'] = ''; }
+	$data['servicio'] = makeSafe($_REQUEST['servicio']);
+		if($data['servicio'] == empty_lookup_value){ $data['servicio'] = ''; }
 
 	// hook: equipo_repuestos_before_insert
 	if(function_exists('equipo_repuestos_before_insert')){
@@ -30,7 +32,7 @@ function equipo_repuestos_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `equipo_repuestos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `codigo`=' . (($data['codigo'] !== '' && $data['codigo'] !== NULL) ? "'{$data['codigo']}'" : 'NULL') . ', `descripcion`=' . (($data['descripcion'] !== '' && $data['descripcion'] !== NULL) ? "'{$data['descripcion']}'" : 'NULL') . ', `cantidad`=' . (($data['cantidad'] !== '' && $data['cantidad'] !== NULL) ? "'{$data['cantidad']}'" : 'NULL'), $o);
+	sql('insert into `equipo_repuestos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `codigo`=' . (($data['codigo'] !== '' && $data['codigo'] !== NULL) ? "'{$data['codigo']}'" : 'NULL') . ', `descripcion`=' . (($data['descripcion'] !== '' && $data['descripcion'] !== NULL) ? "'{$data['descripcion']}'" : 'NULL') . ', `cantidad`=' . (($data['cantidad'] !== '' && $data['cantidad'] !== NULL) ? "'{$data['cantidad']}'" : 'NULL') . ', `servicio`=' . (($data['servicio'] !== '' && $data['servicio'] !== NULL) ? "'{$data['servicio']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"equipo_repuestos_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -111,6 +113,8 @@ function equipo_repuestos_update($selected_id){
 		if($data['descripcion'] == empty_lookup_value){ $data['descripcion'] = ''; }
 	$data['cantidad'] = makeSafe($_REQUEST['cantidad']);
 		if($data['cantidad'] == empty_lookup_value){ $data['cantidad'] = ''; }
+	$data['servicio'] = makeSafe($_REQUEST['servicio']);
+		if($data['servicio'] == empty_lookup_value){ $data['servicio'] = ''; }
 	$data['selectedID']=makeSafe($selected_id);
 
 	// hook: equipo_repuestos_before_update
@@ -120,7 +124,7 @@ function equipo_repuestos_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `equipo_repuestos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `codigo`=' . (($data['codigo'] !== '' && $data['codigo'] !== NULL) ? "'{$data['codigo']}'" : 'NULL') . ', `descripcion`=' . (($data['descripcion'] !== '' && $data['descripcion'] !== NULL) ? "'{$data['descripcion']}'" : 'NULL') . ', `cantidad`=' . (($data['cantidad'] !== '' && $data['cantidad'] !== NULL) ? "'{$data['cantidad']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `equipo_repuestos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `codigo`=' . (($data['codigo'] !== '' && $data['codigo'] !== NULL) ? "'{$data['codigo']}'" : 'NULL') . ', `descripcion`=' . (($data['descripcion'] !== '' && $data['descripcion'] !== NULL) ? "'{$data['descripcion']}'" : 'NULL') . ', `cantidad`=' . (($data['cantidad'] !== '' && $data['cantidad'] !== NULL) ? "'{$data['cantidad']}'" : 'NULL') . ', `servicio`=' . (($data['servicio'] !== '' && $data['servicio'] !== NULL) ? "'{$data['servicio']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="equipo_repuestos_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -164,6 +168,7 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 
 	$filterer_interno = thisOr(undo_magic_quotes($_REQUEST['filterer_interno']), '');
 	$filterer_codigo = thisOr(undo_magic_quotes($_REQUEST['filterer_codigo']), '');
+	$filterer_servicio = thisOr(undo_magic_quotes($_REQUEST['filterer_servicio']), '');
 
 	// populate filterers, starting from children to grand-parents
 
@@ -173,6 +178,8 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 	$combo_interno = new DataCombo;
 	// combobox: codigo
 	$combo_codigo = new DataCombo;
+	// combobox: servicio
+	$combo_servicio = new DataCombo;
 
 	if($selected_id){
 		// mm: check member permissions
@@ -205,14 +212,18 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		$row = $hc->xss_clean($row); /* sanitize data */
 		$combo_interno->SelectedData = $row['interno'];
 		$combo_codigo->SelectedData = $row['codigo'];
+		$combo_servicio->SelectedData = $row['servicio'];
 	}else{
 		$combo_interno->SelectedData = $filterer_interno;
 		$combo_codigo->SelectedData = $filterer_codigo;
+		$combo_servicio->SelectedData = $filterer_servicio;
 	}
 	$combo_interno->HTML = '<span id="interno-container' . $rnd1 . '"></span><input type="hidden" name="interno" id="interno' . $rnd1 . '" value="' . html_attr($combo_interno->SelectedData) . '">';
 	$combo_interno->MatchText = '<span id="interno-container-readonly' . $rnd1 . '"></span><input type="hidden" name="interno" id="interno' . $rnd1 . '" value="' . html_attr($combo_interno->SelectedData) . '">';
 	$combo_codigo->HTML = '<span id="codigo-container' . $rnd1 . '"></span><input type="hidden" name="codigo" id="codigo' . $rnd1 . '" value="' . html_attr($combo_codigo->SelectedData) . '">';
 	$combo_codigo->MatchText = '<span id="codigo-container-readonly' . $rnd1 . '"></span><input type="hidden" name="codigo" id="codigo' . $rnd1 . '" value="' . html_attr($combo_codigo->SelectedData) . '">';
+	$combo_servicio->HTML = '<span id="servicio-container' . $rnd1 . '"></span><input type="hidden" name="servicio" id="servicio' . $rnd1 . '" value="' . html_attr($combo_servicio->SelectedData) . '">';
+	$combo_servicio->MatchText = '<span id="servicio-container-readonly' . $rnd1 . '"></span><input type="hidden" name="servicio" id="servicio' . $rnd1 . '" value="' . html_attr($combo_servicio->SelectedData) . '">';
 
 	ob_start();
 	?>
@@ -221,11 +232,13 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		// initial lookup values
 		AppGini.current_interno__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['interno'] : $filterer_interno); ?>"};
 		AppGini.current_codigo__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['codigo'] : $filterer_codigo); ?>"};
+		AppGini.current_servicio__RAND__ = { text: "", value: "<?php echo addslashes($selected_id ? $urow['servicio'] : $filterer_servicio); ?>"};
 
 		jQuery(function() {
 			setTimeout(function(){
 				if(typeof(interno_reload__RAND__) == 'function') interno_reload__RAND__();
 				if(typeof(codigo_reload__RAND__) == 'function') codigo_reload__RAND__();
+				if(typeof(servicio_reload__RAND__) == 'function') servicio_reload__RAND__();
 			}, 10); /* we need to slightly delay client-side execution of the above code to allow AppGini.ajaxCache to work */
 		});
 		function interno_reload__RAND__(){
@@ -382,6 +395,83 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		<?php } ?>
 
 		}
+		function servicio_reload__RAND__(){
+		<?php if(($AllowUpdate || $AllowInsert) && !$dvprint){ ?>
+
+			$j("#servicio-container__RAND__").select2({
+				/* initial default value */
+				initSelection: function(e, c){
+					$j.ajax({
+						url: 'ajax_combo.php',
+						dataType: 'json',
+						data: { id: AppGini.current_servicio__RAND__.value, t: 'equipo_repuestos', f: 'servicio' },
+						success: function(resp){
+							c({
+								id: resp.results[0].id,
+								text: resp.results[0].text
+							});
+							$j('[name="servicio"]').val(resp.results[0].id);
+							$j('[id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+							if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+
+							if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+						}
+					});
+				},
+				width: '100%',
+				formatNoMatches: function(term){ /* */ return '<?php echo addslashes($Translation['No matches found!']); ?>'; },
+				minimumResultsForSearch: 5,
+				loadMorePadding: 200,
+				ajax: {
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					cache: true,
+					data: function(term, page){ /* */ return { s: term, p: page, t: 'equipo_repuestos', f: 'servicio' }; },
+					results: function(resp, page){ /* */ return resp; }
+				},
+				escapeMarkup: function(str){ /* */ return str; }
+			}).on('change', function(e){
+				AppGini.current_servicio__RAND__.value = e.added.id;
+				AppGini.current_servicio__RAND__.text = e.added.text;
+				$j('[name="servicio"]').val(e.added.id);
+				if(e.added.id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+
+				if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+			});
+
+			if(!$j("#servicio-container__RAND__").length){
+				$j.ajax({
+					url: 'ajax_combo.php',
+					dataType: 'json',
+					data: { id: AppGini.current_servicio__RAND__.value, t: 'equipo_repuestos', f: 'servicio' },
+					success: function(resp){
+						$j('[name="servicio"]').val(resp.results[0].id);
+						$j('[id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+						if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+						if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+					}
+				});
+			}
+
+		<?php }else{ ?>
+
+			$j.ajax({
+				url: 'ajax_combo.php',
+				dataType: 'json',
+				data: { id: AppGini.current_servicio__RAND__.value, t: 'equipo_repuestos', f: 'servicio' },
+				success: function(resp){
+					$j('[id=servicio-container__RAND__], [id=servicio-container-readonly__RAND__]').html('<span id="servicio-match-text">' + resp.results[0].text + '</span>');
+					if(resp.results[0].id == '<?php echo empty_lookup_value; ?>'){ $j('.btn[id=codigo_servicios_view_parent]').hide(); }else{ $j('.btn[id=codigo_servicios_view_parent]').show(); }
+
+					if(typeof(servicio_update_autofills__RAND__) == 'function') servicio_update_autofills__RAND__();
+				}
+			});
+		<?php } ?>
+
+		}
 	</script>
 	<?php
 
@@ -445,6 +535,8 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		$jsReadOnly .= "\tjQuery('#codigo').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#codigo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#cantidad').replaceWith('<div class=\"form-control-static\" id=\"cantidad\">' + (jQuery('#cantidad').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#servicio').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
+		$jsReadOnly .= "\tjQuery('#servicio_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -460,9 +552,12 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 	$templateCode = str_replace('<%%COMBO(codigo)%%>', $combo_codigo->HTML, $templateCode);
 	$templateCode = str_replace('<%%COMBOTEXT(codigo)%%>', $combo_codigo->MatchText, $templateCode);
 	$templateCode = str_replace('<%%URLCOMBOTEXT(codigo)%%>', urlencode($combo_codigo->MatchText), $templateCode);
+	$templateCode = str_replace('<%%COMBO(servicio)%%>', $combo_servicio->HTML, $templateCode);
+	$templateCode = str_replace('<%%COMBOTEXT(servicio)%%>', $combo_servicio->MatchText, $templateCode);
+	$templateCode = str_replace('<%%URLCOMBOTEXT(servicio)%%>', urlencode($combo_servicio->MatchText), $templateCode);
 
 	/* lookup fields array: 'lookup field name' => array('parent table name', 'lookup field caption') */
-	$lookup_fields = array(  'interno' => array('equipos', 'Interno'), 'codigo' => array('repuestos', 'Repuesto'));
+	$lookup_fields = array(  'interno' => array('equipos', 'Interno'), 'codigo' => array('repuestos', 'Repuesto'), 'servicio' => array('codigo_servicios', 'Servicio'));
 	foreach($lookup_fields as $luf => $ptfc){
 		$pt_perm = getTablePermissions($ptfc[0]);
 
@@ -482,6 +577,7 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 	$templateCode = str_replace('<%%UPLOADFILE(interno)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(codigo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(cantidad)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(servicio)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id){
@@ -497,6 +593,9 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(cantidad)%%>', safe_html($urow['cantidad']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(cantidad)%%>', html_attr($row['cantidad']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cantidad)%%>', urlencode($urow['cantidad']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(servicio)%%>', safe_html($urow['servicio']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(servicio)%%>', html_attr($row['servicio']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(servicio)%%>', urlencode($urow['servicio']), $templateCode);
 	}else{
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -506,6 +605,8 @@ function equipo_repuestos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert
 		$templateCode = str_replace('<%%URLVALUE(codigo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(cantidad)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(cantidad)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(servicio)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(servicio)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

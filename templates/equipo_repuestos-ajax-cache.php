@@ -10,7 +10,8 @@
 		var data = {
 			interno: <?php echo json_encode(array('id' => $rdata['interno'], 'value' => $rdata['interno'], 'text' => $jdata['interno'])); ?>,
 			codigo: <?php echo json_encode(array('id' => $rdata['codigo'], 'value' => $rdata['codigo'], 'text' => $jdata['codigo'])); ?>,
-			descripcion: <?php echo json_encode($jdata['descripcion']); ?>
+			descripcion: <?php echo json_encode($jdata['descripcion']); ?>,
+			servicio: <?php echo json_encode(array('id' => $rdata['servicio'], 'value' => $rdata['servicio'], 'text' => $jdata['servicio'])); ?>
 		};
 
 		/* initialize or continue using AppGini.cache for the current table */
@@ -45,6 +46,14 @@
 				return true;
 			}
 
+			return false;
+		});
+
+		/* saved value for servicio */
+		cache.addCheck(function(u, d){
+			if(u != 'ajax_combo.php') return false;
+			if(d.t == tn && d.f == 'servicio' && d.id == data.servicio.id)
+				return { results: [ data.servicio ], more: false, elapsed: 0.01 };
 			return false;
 		});
 

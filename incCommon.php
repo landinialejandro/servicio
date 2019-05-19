@@ -151,7 +151,7 @@
 			'repuestos' => "`repuestos`.`id` as 'id', `repuestos`.`codigo` as 'codigo', `repuestos`.`descripcion` as 'descripcion'",
 			'articulos' => "`articulos`.`id` as 'id', `articulos`.`articulo` as 'articulo'",
 			'marcas' => "`marcas`.`id` as 'id', `marcas`.`marca` as 'marca'",
-			'equipo_repuestos' => "`equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad'",
+			'equipo_repuestos' => "`equipo_repuestos`.`id` as 'id', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'interno', IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') as 'codigo', IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') as 'descripcion', `equipo_repuestos`.`cantidad` as 'cantidad', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio'",
 			'tecnicos' => "`tecnicos`.`id` as 'id', `tecnicos`.`nombre` as 'nombre'",
 			'planificaciones' => "`planificaciones`.`id` as 'id', `planificaciones`.`titulo` as 'titulo', IF(    CHAR_LENGTH(`tecnicos1`.`nombre`), CONCAT_WS('',   `tecnicos1`.`nombre`), '') as 'tecnico', IF(    CHAR_LENGTH(`camionetas1`.`interno`) || CHAR_LENGTH(`camionetas1`.`matricula`), CONCAT_WS('',   `camionetas1`.`interno`, ' - ', `camionetas1`.`matricula`), '') as 'camioneta', if(`planificaciones`.`fecha_planificado`,date_format(`planificaciones`.`fecha_planificado`,'%m/%d/%Y'),'') as 'fecha_planificado'",
 			'planificacion_equipos' => "`planificacion_equipos`.`id` as 'id', IF(    CHAR_LENGTH(`planificaciones1`.`titulo`), CONCAT_WS('',   `planificaciones1`.`titulo`), '') as 'planificacion', IF(    CHAR_LENGTH(`clientes1`.`nombre`), CONCAT_WS('',   `clientes1`.`nombre`), '') as 'cliente', IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') as 'equipo', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') as 'servicio', `planificacion_equipos`.`ubicacion` as 'ubicacion', `planificacion_equipos`.`horometro` as 'horometro', `planificacion_equipos`.`cumplido` as 'cumplido', `planificacion_equipos`.`comentarios` as 'comentarios', if(`planificacion_equipos`.`fecha_cumplido`,date_format(`planificacion_equipos`.`fecha_cumplido`,'%m/%d/%Y'),'') as 'fecha_cumplido', `planificacion_equipos`.`distancia` as 'distancia'",
@@ -178,7 +178,7 @@
 			'repuestos' => "`repuestos` ",
 			'articulos' => "`articulos` ",
 			'marcas' => "`marcas` ",
-			'equipo_repuestos' => "`equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` ",
+			'equipo_repuestos' => "`equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`equipo_repuestos`.`servicio` ",
 			'tecnicos' => "`tecnicos` ",
 			'planificaciones' => "`planificaciones` LEFT JOIN `tecnicos` as tecnicos1 ON `tecnicos1`.`id`=`planificaciones`.`tecnico` LEFT JOIN `camionetas` as camionetas1 ON `camionetas1`.`id`=`planificaciones`.`camioneta` ",
 			'planificacion_equipos' => "`planificacion_equipos` LEFT JOIN `planificaciones` as planificaciones1 ON `planificaciones1`.`id`=`planificacion_equipos`.`planificacion` LEFT JOIN `clientes` as clientes1 ON `clientes1`.`id`=`planificacion_equipos`.`cliente` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`planificacion_equipos`.`equipo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`planificacion_equipos`.`servicio` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos1`.`modelo` ",
@@ -291,7 +291,8 @@
 				'interno' => '',
 				'codigo' => '',
 				'descripcion' => '',
-				'cantidad' => ''
+				'cantidad' => '',
+				'servicio' => ''
 			),
 			'tecnicos' => array(
 				'id' => '',

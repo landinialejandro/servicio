@@ -50,7 +50,8 @@
 			'interno' => array('appgini' => 'INT unsigned null '),
 			'codigo' => array('appgini' => 'INT unsigned null '),
 			'descripcion' => array('appgini' => 'INT unsigned null '),
-			'cantidad' => array('appgini' => 'VARCHAR(40) null ')
+			'cantidad' => array('appgini' => 'VARCHAR(40) null '),
+			'servicio' => array('appgini' => 'INT unsigned null ')
 		),
 		'tecnicos' => array(   
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),

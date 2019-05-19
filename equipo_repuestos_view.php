@@ -26,7 +26,8 @@
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
 		"IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') /* Repuesto */" => "codigo",
 		"IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') /* Descripcion */" => "descripcion",
-		"`equipo_repuestos`.`cantidad`" => "cantidad"
+		"`equipo_repuestos`.`cantidad`" => "cantidad",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio"
 	);
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = array(   
@@ -34,7 +35,8 @@
 		2 => '`equipos1`.`interno`',
 		3 => '`repuestos1`.`codigo`',
 		4 => '`repuestos1`.`descripcion`',
-		5 => 5
+		5 => 5,
+		6 => '`codigo_servicios1`.`servicio`'
 	);
 
 	// Fields that can be displayed in the csv file
@@ -43,7 +45,8 @@
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
 		"IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') /* Repuesto */" => "codigo",
 		"IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') /* Descripcion */" => "descripcion",
-		"`equipo_repuestos`.`cantidad`" => "cantidad"
+		"`equipo_repuestos`.`cantidad`" => "cantidad",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio"
 	);
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = array(   
@@ -51,7 +54,8 @@
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "Interno",
 		"IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') /* Repuesto */" => "Repuesto",
 		"IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') /* Descripcion */" => "Descripcion",
-		"`equipo_repuestos`.`cantidad`" => "Cantidad"
+		"`equipo_repuestos`.`cantidad`" => "Cantidad",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "Servicio"
 	);
 
 	// Fields that can be quick searched
@@ -60,13 +64,14 @@
 		"IF(    CHAR_LENGTH(`equipos1`.`interno`), CONCAT_WS('',   `equipos1`.`interno`), '') /* Interno */" => "interno",
 		"IF(    CHAR_LENGTH(`repuestos1`.`codigo`), CONCAT_WS('',   `repuestos1`.`codigo`), '') /* Repuesto */" => "codigo",
 		"IF(    CHAR_LENGTH(`repuestos1`.`descripcion`), CONCAT_WS('',   `repuestos1`.`descripcion`), '') /* Descripcion */" => "descripcion",
-		"`equipo_repuestos`.`cantidad`" => "cantidad"
+		"`equipo_repuestos`.`cantidad`" => "cantidad",
+		"IF(    CHAR_LENGTH(`codigo_servicios1`.`servicio`), CONCAT_WS('',   `codigo_servicios1`.`servicio`), '') /* Servicio */" => "servicio"
 	);
 
 	// Lookup fields that can be used as filterers
-	$x->filterers = array(  'interno' => 'Interno', 'codigo' => 'Repuesto');
+	$x->filterers = array(  'interno' => 'Interno', 'codigo' => 'Repuesto', 'servicio' => 'Servicio');
 
-	$x->QueryFrom = "`equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` ";
+	$x->QueryFrom = "`equipo_repuestos` LEFT JOIN `equipos` as equipos1 ON `equipos1`.`id`=`equipo_repuestos`.`interno` LEFT JOIN `repuestos` as repuestos1 ON `repuestos1`.`id`=`equipo_repuestos`.`codigo` LEFT JOIN `codigo_servicios` as codigo_servicios1 ON `codigo_servicios1`.`id`=`equipo_repuestos`.`servicio` ";
 	$x->QueryWhere = '';
 	$x->QueryOrder = '';
 
@@ -94,10 +99,10 @@
 	$x->TableIcon = "table.gif";
 	$x->PrimaryKey = "`equipo_repuestos`.`id`";
 
-	$x->ColWidth   = array(  150, 150, 150, 150);
-	$x->ColCaption = array("Interno", "Repuesto", "Descripcion", "Cantidad");
-	$x->ColFieldName = array('interno', 'codigo', 'descripcion', 'cantidad');
-	$x->ColNumber  = array(2, 3, 4, 5);
+	$x->ColWidth   = array(  150, 150, 150, 150, 150);
+	$x->ColCaption = array("Interno", "Repuesto", "Descripcion", "Cantidad", "Servicio");
+	$x->ColFieldName = array('interno', 'codigo', 'descripcion', 'cantidad', 'servicio');
+	$x->ColNumber  = array(2, 3, 4, 5, 6);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/equipo_repuestos_templateTV.html';
