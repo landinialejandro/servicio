@@ -17,9 +17,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`'),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -28,7 +28,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'marca' => array(   
 					'parent-table' => 'marcas',
@@ -40,9 +40,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`'),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -51,7 +51,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'modelo' => array(   
 					'parent-table' => 'modelos',
@@ -63,9 +63,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`'),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -74,7 +74,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				),
 				'familia' => array(   
 					'parent-table' => 'familias',
@@ -86,9 +86,9 @@
 					'display-refresh' => true,
 					'display-add-new' => true,
 					'forced-where' => '',
-					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia'),
-					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia'),
-					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`'),
+					'display-fields' => array(1 => 'Interno', 2 => 'Articulo', 3 => 'Marca', 4 => 'Modelo', 5 => 'Familia', 6 => 'Numero serie', 7 => 'Motor', 8 => 'Motor modelo', 9 => 'Motor serie'),
+					'display-field-names' => array(1 => 'interno', 2 => 'articulo', 3 => 'marca', 4 => 'modelo', 5 => 'familia', 6 => 'numero_serie', 7 => 'motor_marca', 8 => 'motor_modelo', 9 => 'motor_serie'),
+					'sortable-fields' => array(0 => '`equipos`.`id`', 1 => 2, 2 => '`articulos1`.`articulo`', 3 => '`marcas1`.`marca`', 4 => '`modelos1`.`modelo`', 5 => '`familias1`.`familia`', 6 => 7, 7 => 8, 8 => 9, 9 => 10),
 					'records-per-page' => 10,
 					'default-sort-by' => false,
 					'default-sort-direction' => 'asc',
@@ -97,7 +97,7 @@
 					'show-page-progress' => true,
 					'template' => 'children-equipos',
 					'template-printable' => 'children-equipos-printable',
-					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
+					'query' => "SELECT `equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie' FROM `equipos` LEFT JOIN `articulos` as articulos1 ON `articulos1`.`id`=`equipos`.`articulo` LEFT JOIN `marcas` as marcas1 ON `marcas1`.`id`=`equipos`.`marca` LEFT JOIN `modelos` as modelos1 ON `modelos1`.`id`=`equipos`.`modelo` LEFT JOIN `familias` as familias1 ON `familias1`.`id`=`equipos`.`familia` "
 				)
 			),
 			'modelos' => array(   

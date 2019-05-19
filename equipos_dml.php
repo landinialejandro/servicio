@@ -24,6 +24,14 @@ function equipos_insert(){
 		if($data['modelo'] == empty_lookup_value){ $data['modelo'] = ''; }
 	$data['familia'] = makeSafe($_REQUEST['familia']);
 		if($data['familia'] == empty_lookup_value){ $data['familia'] = ''; }
+	$data['numero_serie'] = makeSafe($_REQUEST['numero_serie']);
+		if($data['numero_serie'] == empty_lookup_value){ $data['numero_serie'] = ''; }
+	$data['motor_marca'] = makeSafe($_REQUEST['motor_marca']);
+		if($data['motor_marca'] == empty_lookup_value){ $data['motor_marca'] = ''; }
+	$data['motor_modelo'] = makeSafe($_REQUEST['motor_modelo']);
+		if($data['motor_modelo'] == empty_lookup_value){ $data['motor_modelo'] = ''; }
+	$data['motor_serie'] = makeSafe($_REQUEST['motor_serie']);
+		if($data['motor_serie'] == empty_lookup_value){ $data['motor_serie'] = ''; }
 
 	// hook: equipos_before_insert
 	if(function_exists('equipos_before_insert')){
@@ -32,7 +40,7 @@ function equipos_insert(){
 	}
 
 	$o = array('silentErrors' => true);
-	sql('insert into `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL'), $o);
+	sql('insert into `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL'), $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo "<a href=\"equipos_view.php?addNew_x=1\">{$Translation['< back']}</a>";
@@ -153,6 +161,14 @@ function equipos_update($selected_id){
 		if($data['modelo'] == empty_lookup_value){ $data['modelo'] = ''; }
 	$data['familia'] = makeSafe($_REQUEST['familia']);
 		if($data['familia'] == empty_lookup_value){ $data['familia'] = ''; }
+	$data['numero_serie'] = makeSafe($_REQUEST['numero_serie']);
+		if($data['numero_serie'] == empty_lookup_value){ $data['numero_serie'] = ''; }
+	$data['motor_marca'] = makeSafe($_REQUEST['motor_marca']);
+		if($data['motor_marca'] == empty_lookup_value){ $data['motor_marca'] = ''; }
+	$data['motor_modelo'] = makeSafe($_REQUEST['motor_modelo']);
+		if($data['motor_modelo'] == empty_lookup_value){ $data['motor_modelo'] = ''; }
+	$data['motor_serie'] = makeSafe($_REQUEST['motor_serie']);
+		if($data['motor_serie'] == empty_lookup_value){ $data['motor_serie'] = ''; }
 	$data['selectedID']=makeSafe($selected_id);
 
 	// hook: equipos_before_update
@@ -162,7 +178,7 @@ function equipos_update($selected_id){
 	}
 
 	$o=array('silentErrors' => true);
-	sql('update `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
+	sql('update `equipos` set       `interno`=' . (($data['interno'] !== '' && $data['interno'] !== NULL) ? "'{$data['interno']}'" : 'NULL') . ', `articulo`=' . (($data['articulo'] !== '' && $data['articulo'] !== NULL) ? "'{$data['articulo']}'" : 'NULL') . ', `marca`=' . (($data['marca'] !== '' && $data['marca'] !== NULL) ? "'{$data['marca']}'" : 'NULL') . ', `modelo`=' . (($data['modelo'] !== '' && $data['modelo'] !== NULL) ? "'{$data['modelo']}'" : 'NULL') . ', `familia`=' . (($data['familia'] !== '' && $data['familia'] !== NULL) ? "'{$data['familia']}'" : 'NULL') . ', `numero_serie`=' . (($data['numero_serie'] !== '' && $data['numero_serie'] !== NULL) ? "'{$data['numero_serie']}'" : 'NULL') . ', `motor_marca`=' . (($data['motor_marca'] !== '' && $data['motor_marca'] !== NULL) ? "'{$data['motor_marca']}'" : 'NULL') . ', `motor_modelo`=' . (($data['motor_modelo'] !== '' && $data['motor_modelo'] !== NULL) ? "'{$data['motor_modelo']}'" : 'NULL') . ', `motor_serie`=' . (($data['motor_serie'] !== '' && $data['motor_serie'] !== NULL) ? "'{$data['motor_serie']}'" : 'NULL') . " where `id`='".makeSafe($selected_id)."'", $o);
 	if($o['error']!=''){
 		echo $o['error'];
 		echo '<a href="equipos_view.php?SelectedID='.urlencode($selected_id)."\">{$Translation['< back']}</a>";
@@ -666,6 +682,10 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		$jsReadOnly .= "\tjQuery('#modelo_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
 		$jsReadOnly .= "\tjQuery('#familia').prop('disabled', true).css({ color: '#555', backgroundColor: '#fff' });\n";
 		$jsReadOnly .= "\tjQuery('#familia_caption').prop('disabled', true).css({ color: '#555', backgroundColor: 'white' });\n";
+		$jsReadOnly .= "\tjQuery('#numero_serie').replaceWith('<div class=\"form-control-static\" id=\"numero_serie\">' + (jQuery('#numero_serie').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#motor_marca').replaceWith('<div class=\"form-control-static\" id=\"motor_marca\">' + (jQuery('#motor_marca').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#motor_modelo').replaceWith('<div class=\"form-control-static\" id=\"motor_modelo\">' + (jQuery('#motor_modelo').val() || '') + '</div>');\n";
+		$jsReadOnly .= "\tjQuery('#motor_serie').replaceWith('<div class=\"form-control-static\" id=\"motor_serie\">' + (jQuery('#motor_serie').val() || '') + '</div>');\n";
 		$jsReadOnly .= "\tjQuery('.select2-container').hide();\n";
 
 		$noUploads = true;
@@ -711,6 +731,10 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 	$templateCode = str_replace('<%%UPLOADFILE(marca)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(modelo)%%>', '', $templateCode);
 	$templateCode = str_replace('<%%UPLOADFILE(familia)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(numero_serie)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(motor_marca)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(motor_modelo)%%>', '', $templateCode);
+	$templateCode = str_replace('<%%UPLOADFILE(motor_serie)%%>', '', $templateCode);
 
 	// process values
 	if($selected_id){
@@ -732,6 +756,18 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		if( $dvprint) $templateCode = str_replace('<%%VALUE(familia)%%>', safe_html($urow['familia']), $templateCode);
 		if(!$dvprint) $templateCode = str_replace('<%%VALUE(familia)%%>', html_attr($row['familia']), $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(familia)%%>', urlencode($urow['familia']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(numero_serie)%%>', safe_html($urow['numero_serie']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(numero_serie)%%>', html_attr($row['numero_serie']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(numero_serie)%%>', urlencode($urow['numero_serie']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(motor_marca)%%>', safe_html($urow['motor_marca']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(motor_marca)%%>', html_attr($row['motor_marca']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_marca)%%>', urlencode($urow['motor_marca']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(motor_modelo)%%>', safe_html($urow['motor_modelo']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(motor_modelo)%%>', html_attr($row['motor_modelo']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_modelo)%%>', urlencode($urow['motor_modelo']), $templateCode);
+		if( $dvprint) $templateCode = str_replace('<%%VALUE(motor_serie)%%>', safe_html($urow['motor_serie']), $templateCode);
+		if(!$dvprint) $templateCode = str_replace('<%%VALUE(motor_serie)%%>', html_attr($row['motor_serie']), $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_serie)%%>', urlencode($urow['motor_serie']), $templateCode);
 	}else{
 		$templateCode = str_replace('<%%VALUE(id)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(id)%%>', urlencode(''), $templateCode);
@@ -745,6 +781,14 @@ function equipos_form($selected_id = '', $AllowUpdate = 1, $AllowInsert = 1, $Al
 		$templateCode = str_replace('<%%URLVALUE(modelo)%%>', urlencode(''), $templateCode);
 		$templateCode = str_replace('<%%VALUE(familia)%%>', '', $templateCode);
 		$templateCode = str_replace('<%%URLVALUE(familia)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(numero_serie)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(numero_serie)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(motor_marca)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_marca)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(motor_modelo)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_modelo)%%>', urlencode(''), $templateCode);
+		$templateCode = str_replace('<%%VALUE(motor_serie)%%>', '', $templateCode);
+		$templateCode = str_replace('<%%URLVALUE(motor_serie)%%>', urlencode(''), $templateCode);
 	}
 
 	// process translations

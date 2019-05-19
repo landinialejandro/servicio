@@ -11,7 +11,7 @@
 		}
 
 		// set up tables
-		setupTable('equipos', "create table if not exists `equipos` (   `id` INT unsigned not null auto_increment , primary key (`id`), `interno` VARCHAR(40) null , `articulo` INT unsigned null , `marca` INT unsigned null , `modelo` INT unsigned null , `familia` INT unsigned null ) CHARSET utf8", $silent);
+		setupTable('equipos', "create table if not exists `equipos` (   `id` INT unsigned not null auto_increment , primary key (`id`), `interno` VARCHAR(40) null , `articulo` INT unsigned null , `marca` INT unsigned null , `modelo` INT unsigned null , `familia` INT unsigned null , `numero_serie` VARCHAR(40) null , `motor_marca` VARCHAR(40) null , `motor_modelo` VARCHAR(40) null , `motor_serie` VARCHAR(40) null ) CHARSET utf8", $silent, array( "ALTER TABLE equipos ADD `field7` VARCHAR(40)","ALTER TABLE `equipos` CHANGE `field7` `numero_serie` VARCHAR(40) null ","ALTER TABLE equipos ADD `field8` VARCHAR(40)","ALTER TABLE `equipos` CHANGE `field8` `motor` VARCHAR(40) null ","ALTER TABLE `equipos` CHANGE `motor` `motor_marca` VARCHAR(40) null ","ALTER TABLE equipos ADD `field9` VARCHAR(40)","ALTER TABLE `equipos` CHANGE `field9` `motor_modelo` VARCHAR(40) null ","ALTER TABLE equipos ADD `field10` VARCHAR(40)","ALTER TABLE `equipos` CHANGE `field10` `motor_serie` VARCHAR(40) null "));
 		setupIndexes('equipos', array('articulo','marca','modelo','familia'));
 		setupTable('modelos', "create table if not exists `modelos` (   `id` INT unsigned not null auto_increment , primary key (`id`), `modelo` VARCHAR(40) null , `marca` INT unsigned null ) CHARSET utf8", $silent);
 		setupIndexes('modelos', array('marca'));

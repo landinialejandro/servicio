@@ -145,7 +145,7 @@
 
 	function get_sql_fields($table_name){
 		$sql_fields = array(   
-			'equipos' => "`equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia'",
+			'equipos' => "`equipos`.`id` as 'id', `equipos`.`interno` as 'interno', IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') as 'articulo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca', IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') as 'modelo', IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') as 'familia', `equipos`.`numero_serie` as 'numero_serie', `equipos`.`motor_marca` as 'motor_marca', `equipos`.`motor_modelo` as 'motor_modelo', `equipos`.`motor_serie` as 'motor_serie'",
 			'modelos' => "`modelos`.`id` as 'id', `modelos`.`modelo` as 'modelo', IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') as 'marca'",
 			'familias' => "`familias`.`id` as 'id', `familias`.`familia` as 'familia'",
 			'repuestos' => "`repuestos`.`id` as 'id', `repuestos`.`codigo` as 'codigo', `repuestos`.`descripcion` as 'descripcion'",
@@ -257,7 +257,11 @@
 				'articulo' => '',
 				'marca' => '',
 				'modelo' => '',
-				'familia' => ''
+				'familia' => '',
+				'numero_serie' => '',
+				'motor_marca' => '',
+				'motor_modelo' => '',
+				'motor_serie' => ''
 			),
 			'modelos' => array(
 				'id' => '',

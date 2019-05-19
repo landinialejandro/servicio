@@ -27,7 +27,11 @@
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
-		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia"
+		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
+		"`equipos`.`numero_serie`" => "numero_serie",
+		"`equipos`.`motor_marca`" => "motor_marca",
+		"`equipos`.`motor_modelo`" => "motor_modelo",
+		"`equipos`.`motor_serie`" => "motor_serie"
 	);
 	// mapping incoming sort by requests to actual query fields
 	$x->SortFields = array(   
@@ -36,7 +40,11 @@
 		3 => '`articulos1`.`articulo`',
 		4 => '`marcas1`.`marca`',
 		5 => '`modelos1`.`modelo`',
-		6 => '`familias1`.`familia`'
+		6 => '`familias1`.`familia`',
+		7 => 7,
+		8 => 8,
+		9 => 9,
+		10 => 10
 	);
 
 	// Fields that can be displayed in the csv file
@@ -46,7 +54,11 @@
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
-		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia"
+		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
+		"`equipos`.`numero_serie`" => "numero_serie",
+		"`equipos`.`motor_marca`" => "motor_marca",
+		"`equipos`.`motor_modelo`" => "motor_modelo",
+		"`equipos`.`motor_serie`" => "motor_serie"
 	);
 	// Fields that can be filtered
 	$x->QueryFieldsFilters = array(   
@@ -55,7 +67,11 @@
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "Articulo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "Marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "Modelo",
-		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "Familia"
+		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "Familia",
+		"`equipos`.`numero_serie`" => "Numero serie",
+		"`equipos`.`motor_marca`" => "Motor",
+		"`equipos`.`motor_modelo`" => "Motor modelo",
+		"`equipos`.`motor_serie`" => "Motor serie"
 	);
 
 	// Fields that can be quick searched
@@ -65,7 +81,11 @@
 		"IF(    CHAR_LENGTH(`articulos1`.`articulo`), CONCAT_WS('',   `articulos1`.`articulo`), '') /* Articulo */" => "articulo",
 		"IF(    CHAR_LENGTH(`marcas1`.`marca`), CONCAT_WS('',   `marcas1`.`marca`), '') /* Marca */" => "marca",
 		"IF(    CHAR_LENGTH(`modelos1`.`modelo`), CONCAT_WS('',   `modelos1`.`modelo`), '') /* Modelo */" => "modelo",
-		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia"
+		"IF(    CHAR_LENGTH(`familias1`.`familia`), CONCAT_WS('',   `familias1`.`familia`), '') /* Familia */" => "familia",
+		"`equipos`.`numero_serie`" => "numero_serie",
+		"`equipos`.`motor_marca`" => "motor_marca",
+		"`equipos`.`motor_modelo`" => "motor_modelo",
+		"`equipos`.`motor_serie`" => "motor_serie"
 	);
 
 	// Lookup fields that can be used as filterers
@@ -99,10 +119,10 @@
 	$x->TableIcon = "resources/table_icons/autos.png";
 	$x->PrimaryKey = "`equipos`.`id`";
 
-	$x->ColWidth   = array(  150, 150, 150, 150, 150);
-	$x->ColCaption = array("Interno", "Articulo", "Marca", "Modelo", "Familia");
-	$x->ColFieldName = array('interno', 'articulo', 'marca', 'modelo', 'familia');
-	$x->ColNumber  = array(2, 3, 4, 5, 6);
+	$x->ColWidth   = array(  150, 150, 150, 150, 150, 150, 150, 150, 150);
+	$x->ColCaption = array("Interno", "Articulo", "Marca", "Modelo", "Familia", "Numero serie", "Motor", "Motor modelo", "Motor serie");
+	$x->ColFieldName = array('interno', 'articulo', 'marca', 'modelo', 'familia', 'numero_serie', 'motor_marca', 'motor_modelo', 'motor_serie');
+	$x->ColNumber  = array(2, 3, 4, 5, 6, 7, 8, 9, 10);
 
 	// template paths below are based on the app main directory
 	$x->Template = 'templates/equipos_templateTV.html';

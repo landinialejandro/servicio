@@ -16,7 +16,11 @@
 			'articulo' => array('appgini' => 'INT unsigned null '),
 			'marca' => array('appgini' => 'INT unsigned null '),
 			'modelo' => array('appgini' => 'INT unsigned null '),
-			'familia' => array('appgini' => 'INT unsigned null ')
+			'familia' => array('appgini' => 'INT unsigned null '),
+			'numero_serie' => array('appgini' => 'VARCHAR(40) null '),
+			'motor_marca' => array('appgini' => 'VARCHAR(40) null '),
+			'motor_modelo' => array('appgini' => 'VARCHAR(40) null '),
+			'motor_serie' => array('appgini' => 'VARCHAR(40) null ')
 		),
 		'modelos' => array(   
 			'id' => array('appgini' => 'INT unsigned not null primary key auto_increment '),
