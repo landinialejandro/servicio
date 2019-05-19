@@ -104,12 +104,12 @@ include("$currDir/header.php");
                         <div class="form-control-static"><?php echo $item['servicio']; ?></div>
                         </div>
                     </div>
+                    <label class="text-center">Pendientes</label>
+                    <?php foreach($pend as $i => $item_pend){ 
+                                                ?>
+                                        <p><?php echo $item_pend['comentario']; ?></p>
+                                <?php } ?>
                 </div>
-                <label class="text-center">Pendientes</label>
-                <?php foreach($pend as $i => $item_pend){ 
-                                            ?>
-                                    <p><?php echo $item_pend['comentario']; ?></p>
-                            <?php } ?>
                 <table class="table table-striped table-bordered">
                         <thead>
                             <th class="text-center">Codigo</th>
