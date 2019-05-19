@@ -63,54 +63,58 @@ include("$currDir/header.php");
 		</div>
 	</fieldset>
 </div>
-<table class="table table-striped table-bordered">
-		<thead>
-			<th class="text-center">Cliente</th>
-			<th class="text-center">Equipo</th>
-			<th class="text-center">Servicio</th>
-			<th class="text-center">Ubicacion</th>
-		</thead>
-		
-		<tbody>
-            <?php foreach($plan_equip as $i => $item){ 
-                //var_dump($item);
-                                $where_id = " AND interno = '{$item['equipo']}'";
-                                $equipo = getDataTable_Values('equipos', $where_id);
+        <?php foreach($plan_equip as $i => $item){ 
+            //var_dump($item);
+                            $where_id = " AND interno = '{$item['equipo']}'";
+                            $equipo = getDataTable_Values('equipos', $where_id);
 
-                                $where = " AND equipo_repuestos.interno = {$equipo['id']}";
-                                $rep_fields = get_sql_fields('equipo_repuestos');
-                                $rep_from = get_sql_from('equipo_repuestos');
-                                $rep = sql("SELECT {$rep_fields} FROM {$rep_from} {$where}",$e);
-                            ?>
-				<tr>
-					<td><?php echo $item['cliente']; ?></td>
-					<td class="text-right"><?php echo $item['equipo']; ?></td>
-					<td class="text-right"><?php echo $item['servicio']; ?></td>
-					<td class="text-right"><?php echo $item['ubicacion']; ?></td>
-				</tr>
-                <tr>
-                    <table class="table table-striped table-bordered">
-                            <thead>
-                                <th class="text-center">Codigo</th>
-                                <th class="text-center">Descripcion</th>
-                                <th class="text-center">Cantidad</th>
-                                <th class="text-center">Servicio</th>
-                            </thead>
-                            
-                            <tbody>
-                                <?php foreach($rep as $i => $item_rep){ 
-                                    //var_dump($item_rep);
-                                                ?>
-                                    <tr>
-                                        <td><?php echo $item_rep['codigo']; ?></td>
-                                        <td class="text-right"><?php echo $item_rep['descripcion']; ?></td>
-                                        <td class="text-right"><?php echo $item_rep['cantidad']; ?></td>
-                                        <td class="text-right"><?php echo $item_rep['servicio']; ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                    </table>
-                </tr>
-            <?php } ?>
-        </tbody>
-</table>
+                            $where = " AND equipo_repuestos.interno = {$equipo['id']}";
+                            $rep_fields = get_sql_fields('equipo_repuestos');
+                            $rep_from = get_sql_from('equipo_repuestos');
+                            $rep = sql("SELECT {$rep_fields} FROM {$rep_from} {$where}",$e);
+                        ?>
+                <div class="panel-heading">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="text-center">Cliente</label>
+                            <div class="form-control-static"><?php echo $item['cliente']; ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-center">Ubicacion</label>
+                            <div class="form-control-static"><?php echo $item['ubicacion']; ?></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="text-center">Equipo</label>
+                            <div class="form-control-static"><?php echo $item['equipo']; ?></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-center">Servicio</label>
+                        <div class="form-control-static"><?php echo $item['servicio']; ?></div>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-bordered">
+                        <thead>
+                            <th class="text-center">Codigo</th>
+                            <th class="text-center">Descripcion</th>
+                            <th class="text-center">Cantidad</th>
+                            <th class="text-center">Servicio</th>
+                        </thead>
+                        
+                        <tbody>
+                            <?php foreach($rep as $i => $item_rep){ 
+                                //var_dump($item_rep);
+                                            ?>
+                                <tr>
+                                    <td><?php echo $item_rep['codigo']; ?></td>
+                                    <td class="form-control-static"><?php echo $item_rep['descripcion']; ?></td>
+                                    <td class="form-control-static"><?php echo $item_rep['cantidad']; ?></td>
+                                    <td class="form-control-static"><?php echo $item_rep['servicio']; ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                </table>
+            </tr>
+        <?php } ?>
